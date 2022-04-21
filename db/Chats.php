@@ -49,7 +49,7 @@ class Chats {
     }
 
     public function setGroupId($group_id){
-        return $this->group_id = $group_id;
+        $this->group_id = $group_id;
     }
 
     public function getCreatedAt() {
@@ -68,11 +68,16 @@ class Chats {
         $statement->bindParam(":group_id", $this->group_id);
         $statement->bindParam(":created_at", $this->created_at);
 
-        if($statement->execute()) {
-            return true;
-        } else {
-            return false;
+        try{
+            if($statement->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch(Exception $e){
+            return $e->getMessage();
         }
+
     }
 
 
@@ -86,20 +91,13 @@ class Chats {
     }
 
     // Get Chat by Group_id
-    public function getChatByGroup(){
+    public function getChatByGroup($group_id){
         $statement = $this->db_conn->prepare("SELECT * FROM chats INNER JOIN users ON chats.user_id = users.user_id WHERE group_id = :group_id ");
+        $statement->bindParam(":group_id", $group_id);
+        $statement->execute();
+        $chatsData = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-        $statement->bindParam(":group_id", $this->group_id);
-
-        try {
-            if($statement->execute()) {
-                $chat = $statement->fetch(PDO::FETCH_ASSOC);
-            }
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
-
-        return $chat;
+        return $chatsData;
 
     }
 

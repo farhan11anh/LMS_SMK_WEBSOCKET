@@ -1,12 +1,33 @@
 <?php
     require "./db/Ports.php";
+    require "./db/Chats.php";
+    require "./db/Users.php";
     
     $objPort = new Ports;
     $objPort->set_group_id($_POST['group_id']);
     $portsData = $objPort->get_port_by_group_id();
 
+    
+
     if(!empty($portsData)) {
-        echo $portsData['value'];
+        // echo $portsData['value'];
+        $chats = new Chats;
+        $chat = $chats->getChatByGroup($_POST['group_id']);
+
+        $objUser = new Users;
+        $objUser->setEmail($_POST['user_email']);
+        $userData = $objUser->getUserByEmail();
+        $userId = $userData['user_id'];
+    
+        // echo json_encode($chat);
+
+        $arr = [
+            'portData' => $portsData['value'],
+            'message' =>$chat,
+            'userId' =>$userId
+        ];
+
+        echo json_encode($arr);
     } else {
         $objPort->set_status(0);
         $port = $objPort->get_all_free_port();
@@ -27,7 +48,4 @@
             echo "Port is full!";
         }
     }
-
-    
-    
-    
+    ?>

@@ -10,6 +10,8 @@ if (!isset($_SESSION['user'])) {
     header("location: login.php");
 }
 
+// var_dump($_SESSION['user']);
+
 $objUser = new Users;
 $objUser->setEmail($_SESSION['user']);
 $user = $objUser->getUserByEmail();
@@ -29,6 +31,11 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $user['user_id']
     <title>Group Chat</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    <!-- flowbite -->
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.2/dist/flowbite.min.css" />
+    <script src="https://unpkg.com/flowbite@1.4.2/dist/flowbite.js"></script>
+
 </head>
 
 <body>
@@ -50,7 +57,15 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $user['user_id']
                     var_dump($group['group_id']);
 
                 ?>
-                    <div onclick="requestChat(<?= $group['group_id']; ?>)">
+
+                <?php 
+                
+                $emailUser = $_SESSION['user'];
+                $idgrup = $group['group_id'];
+
+                ?>
+                    
+                    <div onclick="requestChat(<?= $group['group_id']?> , '<?= $emailUser ?>' )" >
                         <div class="flex items-center space-x-4 bg-gray-200 h-[80px] px-2 cursor-pointer border-b-2">
                             <img class="w-[50px] h-[50px] rounded-full" src="./img/dummy/people.jpg" alt="Profile Image">
                             <div class="flex flex-col">
@@ -63,45 +78,15 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $user['user_id']
                 <?php
                 }
                 ?>
-
-
             </div>
+
+
         </div>
         <!-- Right Side  -->
         <div class="w-9/12 h-screen bg-red-100">
             <div class="w-full h-[90%] mx-auto p-4 flex flex-col gap-y-2 overflow-y-scroll" id="chat-container">
                 <p>holla</p>
 
-                <?php
-
-                $chats = new Chats;
-                $chat = $chats->getAllChat();
-
-                // Load all messages from database
-                foreach ($chat as $key => $chat) {
-
-                    // Create new object for class users
-                    $objUser = new Users;
-                    $objUser->setEmail($_SESSION['user']);
-                    $userData = $objUser->getUserByEmail();
-                    $userId = $userData['user_id'];
-
-                    $styleBox = '';
-
-                    if ($chat['user_id'] == $userId) {
-                        $styleBox = 'bg-red-200 text-right ml-auto';
-                        $chat['name'] = "Me";
-                    } else {
-                        $styleBox = 'bg-green-200 text-left';
-                    }
-
-                    echo '<div class="max-w-fit ' . $styleBox . ' rounded-xl px-4 py-2 ..."><small class="font-semibold">' . $chat['name'] .
-                        '</small><p class="">' . $chat['message'] .
-                        '</p><p class="text-right text-xs text-gray-400 ">' . $chat['created_at'] .
-                        '</p></div>';
-                }
-
-                ?>
             </div>
             <form class="w-9/12 fixed bottom-0 flex mb-0 h-[10%]" action="" method="POST">
                 <input class="px-4 py-1 flex-1 border border-gray-200 outline-none" type="text" name="message" id="message" placeholder="Enter messages...">
@@ -110,27 +95,74 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $user['user_id']
         </div>
     </div>
 
+
+
     <script>
-        function requestChat(id) {
+        function requestChat(id, email) {
+
+            // mengkosongkan halaman chat box
+            $('#chat-container').html("");
+
+            console.log(email);
             $.ajax({
                 method: "POST",
                 data: {
-                    group_id: id
+                    group_id: id,
+                    user_email: email
                 },
                 url: "action.php",
                 success: function(data, status) {
-                    // console.log(data);
-                    requestNewWSConnection(data);
-                    var conn = new WebSocket("ws://localhost:" + data);
+                    
+                    let isi = JSON.parse(data)  
+
+                    console.log(isi);
+
+                    let message = isi.message;
+
+                    for (let e in message){
+                        console.log(e + " -> " + message[e]);
+                        
+                            // console.log(z + "->" + message[e][z]['chat_id']);
+                            let val = message[e];
+                            console.log(val['chat_id']);
+                            console.log(val['message']);
+                            console.log(val['name']);
+                            console.log(isi.userId);
+
+                            // menambahkan chat yang telah difilter ke dalam halaman 
+                            
+                            let styleBox = '';
+
+                            if (val['user_id'] == isi.userId) {
+                                styleBox = 'bg-red-200 text-right ml-auto';
+                                val['name'] = "Me";
+                            } else {
+                                styleBox = 'bg-green-200 text-left';
+                            }
+
+                            let contain =  '<div class="max-w-fit ' + styleBox + ' rounded-xl px-4 py-2 ..."><small class="font-semibold">' + val['name'] +
+                                '</small><p class="">' + val['message'] +
+                                '</p><p class="text-right text-xs text-gray-400 ">' + val['created_at'] +
+                                '</p></div>';
+
+                            
+                            $('#chat-container').append(contain);
+
+                            
+                    }
+
+                    requestNewWSConnection(isi.portData);
+                    var conn = new WebSocket("ws://localhost:" + isi.portData);
+
+
                     console.log(conn)
                     conn.onopen = function(e) {
                         console.log("Connection Establish...");
                     }
 
                     conn.onmessage = function(e) {
-                        console.log(e.data);
+                        // console.log(e.data);
                         data = JSON.parse(e.data);
-                        console.log(data)
 
                         var styleBox = '';
 
@@ -161,6 +193,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $user['user_id']
                             msg: message,
                             group_id: id,
                         };
+                        // console.log(chatData)
 
                         conn.send(JSON.stringify(chatData));
                         // console.log(chatData);

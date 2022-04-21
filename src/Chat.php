@@ -37,6 +37,7 @@ class Chat implements MessageComponentInterface {
         $objChat->setMessage($data['msg']);
         $objChat->setGroupId($data['group_id']);
         $objChat->setCreatedAt(date("Y-m-d h:i:s"));
+        
         if($objChat->saveChat()) {
             $objUser = new \Users;
             $objUser->setId($data['user_id']);
