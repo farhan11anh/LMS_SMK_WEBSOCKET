@@ -7,7 +7,7 @@ A web chat application
 Clone the project to folder htdocs
 
 ```bash
-  git clone https://github.com/Ilham-muttaqien17/web-chat-room
+  git clone https://github.com/farhan11anh/LMS_SMK_WEBSOCKET/edit/master/README.md
 ```
 
 Go to the project directory
@@ -31,5 +31,5 @@ Start the chat-server
 
 ## Authors
 
-- [@ilham-muttaqien17](https://github.com/Ilham-muttaqien17)
+- [@farhan11anh](https://github.com/farhan11anh)
 
