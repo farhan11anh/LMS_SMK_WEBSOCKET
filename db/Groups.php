@@ -41,4 +41,18 @@ class Groups {
         return $groupsData;
     }
 
+    public function filterGroup($user_id){
+        $stmt = $this->db_conn->prepare("SELECT * FROM groups join privillage_group on groups.group_id = privillage_group.group_id where privillage_group.user_id = $user_id");
+
+        try {
+            if($stmt->execute()) {
+                $groupsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+
+        return $groupsData;
+    }
+
 }

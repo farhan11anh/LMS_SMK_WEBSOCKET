@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 require "./db/Users.php";
 
 // Session check
@@ -7,24 +7,62 @@ if(isset($_SESSION['user'])) {
     header("location: ./");
 }
 
-session_start();
+// if($orang['role'] == 2){
+//     header("location: http://localhost/websocket/web-chat-room/frontend/pages/mentor.php");
+// }
+
+// if($orang['role'] == 3){
+//     header("location: http://localhost/websocket/web-chat-room/frontend/pages");
+// }
+
+// $id_user1 = 1;
+// $response = file_get_contents('https://i0ifhnk0.directus.app/items/user?filter={"user_id":' .$id_user1.'}');
+// var_dump($response); echo '<br><br>';
+
 
 if(isset($_POST['login'])) {
-    // Create object for class users
-    $objUser = new Users;
-    $loginResponse = $objUser->loginUser($_POST);
-    if($loginResponse['is_ok']) {
-       
-        $_SESSION['user'] = $_POST['email'];
-        
-        echo "
-        <script>
-            alert('" . $loginResponse['msg'] . "');
-            location.replace('./');
-        </script>";
+    $loginResponse['is_ok'] = true;
 
-    } else {
-        echo "<script>alert('" . $loginResponse['msg'] . "')</script>";
+    $loginResponse['msg'] = 'login success';
+
+    if($loginResponse['is_ok']) {
+
+        // panggil api, untuk mendapatkan data user
+
+        $email = $_POST['email'];
+        // var_dump($email);
+
+        // abbil data dari rest API
+        $response = json_decode(file_get_contents('https://i0ifhnk0.directus.app/items/user?filter={"user_email":"' .$email.'"}'), true);
+        // var_dump($response);
+
+        $userRespon = $response['data'];
+        var_dump($userRespon[0]['user_email']);
+        
+
+        if(!empty($userRespon)){
+            // var_dump($userRespon);
+
+            // validate pw
+            if ($userRespon[0]['user_password'] == $_POST['password']){
+                echo 'success';
+                $_SESSION['email'] = $_POST['email'];
+                $_SESSION['user'] = $userRespon[0]['user_username'];
+                $_SESSION['role'] = $userRespon[0]['role_id'];
+                $_SESSION['id'] = $userRespon[0]['user_id'];
+                // var_dump($_SESSION);
+                $_SESSION['status'] = "login";
+
+                header('location: ./');
+            }else {
+                echo 'password tidak tepat';
+            }
+
+            
+        }else{
+            echo 'login failed';
+        }
+
     }
 }
 

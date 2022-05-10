@@ -2,7 +2,10 @@
     require "./db/Ports.php";
     require "./db/Chats.php";
     require "./db/Users.php";
+
+    // require ".db/Groups.php";
     
+    // PORT
     $objPort = new Ports;
     $objPort->set_group_id($_POST['group_id']);
     $portsData = $objPort->get_port_by_group_id();
@@ -14,10 +17,13 @@
         $chats = new Chats;
         $chat = $chats->getChatByGroup($_POST['group_id']);
 
-        $objUser = new Users;
-        $objUser->setEmail($_POST['user_email']);
-        $userData = $objUser->getUserByEmail();
-        $userId = $userData['user_id'];
+        // $objUser = new Users;
+        // $objUser->setEmail($_POST['user_email']);
+        // $userData = $objUser->getUserByEmail();
+
+        $userData = json_decode(file_get_contents('https://i0ifhnk0.directus.app/items/user?filter={"user_email":"' .$_POST['user_email'].'"}'), true);
+        $data = $userData['data'];
+        $userId = $data[0]['user_id'];
     
         // echo json_encode($chat);
 
@@ -48,4 +54,5 @@
             echo "Port is full!";
         }
     }
+
     ?>

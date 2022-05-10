@@ -149,6 +149,14 @@
             return $userData;
         }
 
+        public function getUserMentor(){
+            $statement = $this->db_conn->prepare("SELECT * FROM users WHERE role =2 ");
+            $statement->execute();
+            $userData = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+            return $userData;
+        }
+
         // Register new user account
         public function registerNewUser($data) {
 
