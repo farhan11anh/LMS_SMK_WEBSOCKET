@@ -298,8 +298,8 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                 <!-- List Chat -->
                 <div class="md:w-1/3 md:mr-6 mr-0 mb-5 md:mb-5">
                     <div>
-                        <div class="border border-gray-300 rounded-xl bg-white">
-                            <ul class="overflow-auto h-[14rem]">
+                        <div class="border border-gray-300 rounded-xl overflow-hidden bg-white">
+                            <ul class="overflow-auto">
                                 <li>
 
                                     <?php
@@ -320,7 +320,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
 
                                     <a onclick="requestChat(<?= $group['group_id'] ?> , '<?= $email ?>', '<?= $group['group_name'] ?>' )"
-                                        class="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none rounded-t-xl">
+                                        class="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none ">
                                         <img class="object-cover w-11 h-12 rounded-full"
                                             src="Img/icons/default_profile.svg" alt="Profile Image">
                                         <div class="w-full pb-2">
