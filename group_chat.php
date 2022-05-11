@@ -327,7 +327,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
             <div class="md:flex">
                 <!-- List Chat -->
-                <div class="md:w-2/3 md:mr-6 mr-0 mb-5 md:mb-5">
+                <div class="md:w-1/3 md:mr-6 mr-0 mb-5 md:mb-5">
                     <div>
                         <div class="border border-gray-300 rounded-xl bg-white">
                             <ul class="overflow-auto h-[14rem]">
