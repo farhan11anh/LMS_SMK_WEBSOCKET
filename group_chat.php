@@ -187,31 +187,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                                 <p class="text-white font-semibold">Consult</p>
                             </a>
                         </li>
-                        <li>
-                            <button type="button"
-                                class="flex items-center gap-x-4 h-[50px] w-full rounded-xl px-4 bg-cream text-base font-normal text-gray-900 transition duration-75 group "
-                                aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                                <img class="w-5" src="Img/icons/consult_icon.svg" alt="Consult Icon">
-                                <span class="flex-1 text-left whitespace-nowrap text-white font-semibold"
-                                    sidebar-toggle-item>Consult</span>
-                                <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </button>
-                            <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                                <li>
-                                    <a href="murid/daftarRequest.php"
-                                        class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Status</a>
-                                </li>
-                                <li>
-                                    <a href="murid/bookingMentor.php"
-                                        class="border-cream flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Booking</a>
-                                </li>
-                            </ul>
-                        </li>
+
                     </ul>
                 </div>
             </div>
