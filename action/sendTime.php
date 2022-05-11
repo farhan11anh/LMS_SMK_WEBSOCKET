@@ -61,6 +61,6 @@ var_dump($result);
 curl_close($ch);
 
 
-header("location: ../frontend/pages/mentor_approve11.php ");
+header("location: ../frontend/pages/mentor_set_schedule.php ");
 
 ?>

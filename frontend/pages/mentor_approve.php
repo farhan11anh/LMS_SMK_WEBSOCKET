@@ -9,9 +9,8 @@ $objUser = new Users;
 $objUser->setEmail($_SESSION['user']);
 $orang = $objUser->getUserByEmail();
 
-var_dump($orang['role']);
 
-if($orang['role'] == 3){
+if($_SESSION['role'] == 3){
     header("location: http://localhost/websocket/web-chat-room/frontend/pages");
 }
 
@@ -46,7 +45,7 @@ $acceptances = $acc->getApprove();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment Page</title>
+    <title>List Approvement</title>
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -194,7 +193,7 @@ $acceptances = $acc->getApprove();
             <!-- Header / Profile -->
             <div class="flex items-center gap-x-4 justify-end">
                 <img class="w-10" src="./Img/icons/default_profile.svg" alt="Profile Image">
-                <p class="text-dark-green font-semibold">Mentor Name</p>
+                <p class="text-dark-green font-semibold"><?= $_SESSION['user'] ?></p>
             </div>
 
             <!-- Breadcrumb -->
@@ -226,6 +225,9 @@ $acceptances = $acc->getApprove();
                     <a href="http://localhost/websocket/web-chat-room/frontend/pages/mentor.php"><li class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
                          Booking 
                     </li></a>   
+                    <a href="http://localhost/websocket/web-chat-room/frontend/pages/mentor_set_schedule.php"><li class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                        <p>Add Schedule</p>
+                    </li></a>
                 </ul>
             </div>
             <div>
@@ -250,7 +252,7 @@ $acceptances = $acc->getApprove();
                             <tr>
                             <td class="border-b px-4 py-2"><?= $acceptance['name'] ?></td>
                             <td class="border-b px-4 py-2 text-center"><?= $acceptance['time'] ?></td>
-                            <td class="border-b px-4 py-2 text-center">Module Konsultasi Penilaian</td>
+                            <td class="border-b px-4 py-2 text-center"><?= $acceptance['topic'] ?></td>
                             <td class="border-b px-4 py-2 text-center">
                                     <?php if($acceptance['status'] == 'disable') { ?>
                                         <button type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 mb-2 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>, 'approve')">Approve</button>

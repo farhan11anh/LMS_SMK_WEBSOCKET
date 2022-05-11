@@ -11,7 +11,6 @@ $objUser = new Users;
 $objUser->setEmail($_SESSION['user']);
 $orang = $objUser->getUserByEmail();
 
-var_dump($_SESSION['role']);
 
 if($_SESSION['role'] == 3){
     header("location: http://localhost/websocket/web-chat-room/frontend/pages");
@@ -26,13 +25,12 @@ if (!isset($_SESSION['user'])) {
 $objUser->setEmail($_SESSION['user']);
 $user = $objUser->getUserByEmail();
 
-var_dump($_SESSION['user']);
 
 
 // availability
 $objAva = new Availability;
 $dataAva = $objAva->getDataById($_SESSION['id']);
-var_dump($dataAva); 
+
 
 ?>
 
@@ -43,7 +41,7 @@ var_dump($dataAva);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment Page</title>
+    <title>Set Schedule</title>
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -187,7 +185,7 @@ var_dump($dataAva);
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="../../logout.php"
                             class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
                             <img class="w-5" src="./Img/icons/logout_icon.svg" alt="Log out Icon">
                             <p class="font-semibold">Log out</p>
@@ -230,15 +228,18 @@ var_dump($dataAva);
                 <ul class="flex items-center gap-x-8">
                     <a href="mentor_approve.php">
                         <li
-                            class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                        class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
                             <p>Session</p>
                         </li>
                     </a>
                     <a href="mentor.php">
                         <li
-                            class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                        class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
                             Booking</li>
                     </a>
+                    <a href="http://localhost/websocket/web-chat-room/frontend/pages/mentor_set_schedule.php"><li class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                        <p>Add Schedule</p>
+                    </li></a>
                 </ul>
             </div>
             <div class="flex flex-row-reverse ...">
@@ -252,14 +253,12 @@ var_dump($dataAva);
                     <colgroup>
                         <col span="1" style="width: 10%">
                         <col span="1" style="width: 10%">
-                        <col span="1" style="width: 10%">
    
                     </colgroup>
                     <thead>
                         <tr class="text-dark-green">
                             <th class="border-b text-center px-4 py-2">Waktu Mulai</th>
                             <th class="border-b text-center px-4 py-2">Waktu Selesai</th>
-                            <th class="border-b text-center px-4 py-2">Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -268,12 +267,6 @@ var_dump($dataAva);
                         <tr>
                             <td class="border-b px-4 py-2 text-center"><?= $data['start_time'] ?></td>
                             <td class="border-b px-4 py-2 text-center"><?= $data['end_time'] ?></td>
-                            <td class="border-b px-4 py-2 text-center">
-                                <button
-                                    class="ml-1 text-white border border-red-700 bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 cursor-not-allowed">Not
-                                    Approved
-                                </button>
-                            </td>
                         </tr>
                         <?php } ?>
                     </tbody>
@@ -383,7 +376,7 @@ var_dump($dataAva);
 
                     let name = user.name;
 
-                    $('#mentorName').html(name);
+                    $('#mentorName').html(uname);
                     
 
                 }

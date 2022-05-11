@@ -14,7 +14,7 @@
         $objUser->setId($_POST['user_id']);
     
         $response = json_decode(file_get_contents('https://i0ifhnk0.directus.app/items/user?filter={"user_id":"' .$_POST['user_id'].'"}'), true);
-        $userData = $response['data'];
+        $userData = $response['data'][0];
 
         $objAva = new Availability;
 

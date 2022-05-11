@@ -134,6 +134,7 @@ class Acceptance{
         $statement = $this->db_conn->prepare("SELECT * FROM acceptance where acceptance_id = $id");
 
         $statement->execute();
+
         $data = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $data;

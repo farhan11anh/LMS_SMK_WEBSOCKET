@@ -153,7 +153,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
+                        <a href="../../logout.php" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
                             <img class="w-5" src="./Img/icons/logout_icon.svg" alt="Log out Icon">
                             <p class="font-semibold">Log out</p>
                         </a>

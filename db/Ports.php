@@ -106,4 +106,19 @@ class Ports {
 
         return $port;
     }
+
+    public function deletePortStatus($group_id){
+        $stmt = $this->db_conn->prepare("UPDATE ports SET status = 0, group_id = 0 WHERE group_id = :group_id");
+        $stmt->bindParam(":group_id", $group_id);
+
+        try {
+            if($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }

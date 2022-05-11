@@ -2,8 +2,11 @@
 
 session_start();
 
+
+
 include_once '../../db/Users.php';
 include_once '../../db/Acceptance.php';
+
 
 $objUser = new Users;
 $objUser->setEmail($_SESSION['user']);
@@ -29,11 +32,9 @@ $user = $objUser->getUserByEmail();
 $acc = new Acceptance;
 $acceptances = $acc->getNotApprove();
 
+include '../../db/Groups.php';
+$grp = new Groups;
 
-// foreach($mentors as $mentor){
-//     echo $mentor['name']; echo '<br>';
-    
-// }
 
 
 ?>
@@ -47,7 +48,7 @@ $acceptances = $acc->getNotApprove();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment Page</title>
+    <title>Consultation Submission</title>
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -230,6 +231,9 @@ $acceptances = $acc->getNotApprove();
                         <p>Session</p>
                     </li></a>
                     <li class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">Booking</li>
+                    <a href="http://localhost/websocket/web-chat-room/frontend/pages/mentor_set_schedule.php"><li class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                        <p>Add Schedule</p>
+                    </li></a>
                 </ul>
             </div>
 
@@ -258,7 +262,7 @@ $acceptances = $acc->getNotApprove();
                                 <td class="border-b px-4 py-2 text-center"><?= $acceptance['topic']; ?></td>
                                 <td class="border-b px-4 py-2 text-center">
                                     <?php if($acceptance['status'] == 'disable') { ?>
-                                        <button type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 mb-2 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>, 'active')">Approve</button>
+                                        <button type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 mb-2 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>, 'active',<?= $_SESSION['id'] ?> )">Approve</button>
                                         <button type="button" class="text-red-700 ml-1 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 " onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>, 'reject')" >Not Approve</button>
                                     <?php } elseif($acceptance['status'] == 'active') { ?>
                                         <button disabled type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 mb-2 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>)">Approved</button>
@@ -294,7 +298,7 @@ $acceptances = $acc->getNotApprove();
     </script>
 
     <script>
-        function changeStatus(id, status){
+        function changeStatus(id, status, iduser){
 
             if(confirm('apakah anda yakin menerima tawaran ?')){
                 console.log(id);
@@ -302,6 +306,7 @@ $acceptances = $acc->getNotApprove();
                 method:'post',
                 url: '../../action/changeAcc.php',
                 data: {
+                    id_user : iduser,
                     acc_id : id,
                     status: status,
                     approve: "success"

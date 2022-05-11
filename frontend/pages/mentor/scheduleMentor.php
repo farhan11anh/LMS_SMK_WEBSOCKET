@@ -10,11 +10,6 @@ $objUser = new Users;
 $objUser->setEmail($_SESSION['user']);
 $orang = $objUser->getUserByEmail();
 
-var_dump($orang['user_id']);
-
-if($orang['role'] == 3){
-    header("location: http://localhost/websocket/web-chat-room/frontend/pages");
-}
 
 if (!isset($_SESSION['user'])) {
     header("location: login.php");
@@ -25,12 +20,12 @@ if (!isset($_SESSION['user'])) {
 $objUser->setEmail($_SESSION['user']);
 $user = $objUser->getUserByEmail();
 
-var_dump($user['user_id']);
+
 
 
 // availability
 $objAva = new Availability;
-$dataAva = $objAva->getDataById($orang['user_id']);
+$dataAva = $objAva->getDataById($_SESSION['id']);
 var_dump($dataAva);
 
 ?>
@@ -82,7 +77,7 @@ var_dump($dataAva);
              <input type="datetime-local" name="endTime" id="endTime">
          </label><br>
 
-         <input type="text" name="mentor_id" id="mentorId" hidden value="<?= $user['user_id'] ?>">
+         <input type="text" name="mentor_id" id="mentorId" hidden value="<?= $_SESSION['id'] ?>">
          <button type="submit" name="submit" id="submit">Submit</button>
      </form>
 

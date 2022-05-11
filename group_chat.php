@@ -4,6 +4,22 @@ session_start();
 require("db/Users.php");
 require("db/Chats.php");
 
+if (isset($_POST['endChat'])) {
+    // echo $_POST['idEnd'];
+    require("db/Ports.php");
+
+    $objPort = new Ports;
+
+    if ($objPort->deletePortStatus($_POST['idEnd'])) {
+        require("db/PrivillageGroup.php");
+
+        $objPriv = new Privillage;
+
+        $objPriv->deletePrivillage($_POST['idEnd']);
+
+        return 'success';
+    }
+}
 
 
 if (!isset($_SESSION['user'])) {
@@ -19,7 +35,7 @@ $objUser->setEmail($_SESSION['user']);
 $user = $objUser->getUserByEmail();
 
 $response = json_decode(file_get_contents('https://i0ifhnk0.directus.app/items/user?filter={"user_email":"' . $email . '"}'), true);
-var_dump($_SESSION['role']);
+// var_dump($_SESSION['role']);
 
 
 echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] . "'>";
@@ -42,7 +58,6 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
     <!-- Tailwindcss -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.2/dist/flowbite.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
 
     <!-- daisyUI - Countdown -->
@@ -124,7 +139,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                     <ul class="flex flex-col gap-y-1">
                         <li>
                             <a href="#" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
-                                <img class="w-5" src="Img/icons/home_icon.svg" alt="Dashboard Icon"> 
+                                <img class="w-5" src="Img/icons/home_icon.svg" alt="Dashboard Icon">
                                 <p class="font-semibold">Dashboard</p>
                             </a>
                         </li>
@@ -184,13 +199,13 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                 <ul class="flex flex-col ">
                     <li>
                         <a href="#" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
-                            <img class="w-5" src="../Img/icons/help_icon.svg" alt="Help Icon">
+                            <img class="w-5" src="Img/icons/help_icon.svg" alt="Help Icon">
                             <p class="font-semibold">Help</p>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
-                            <img class="w-5" src="../Img/icons/logout_icon.svg" alt="Log out Icon">
+                        <a href="logout.php" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
+                            <img class="w-5" src="Img/icons/logout_icon.svg" alt="Log out Icon">
                             <p class="font-semibold">Log out</p>
                         </a>
                     </li>
@@ -204,7 +219,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
             <!-- Header / Profile -->
             <div class="flex items-center gap-x-4 justify-end">
                 <img class="w-10" src="Img/icons/default_profile.svg" alt="Profile Image">
-                <p class="text-dark-green font-semibold">Mentor Name</p>
+                <p class="text-dark-green font-semibold"><?= $_SESSION['user'] ?></p>
             </div>
 
             <div>
@@ -223,17 +238,62 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                     </span>
                 </div>
                 <!-- End Session -->
-                <div class="absolute right-[0px]">
-                    <button type="button" class="py-2 pb-3 px-4 text-sm font-medium first-line:text-center text-white bg-red-600 rounded-2xl hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-200">
-                        <p class="translate-y-0.5">End Session</p>
+                <?php
+                
+                if($_SESSION['id'] == 2){
+                   echo '<div class="absolute right-[0px]">
+                    <button class="py-2 pb-3 px-4 text-sm font-medium first-line:text-center text-white bg-yellow-600 rounded-2xl hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-200" type="button" data-modal-toggle="deleteSes">
+                        End Session 
                     </button>
+                    </div>';
+                } else {
+                    
+                }
+
+                ?>
+
+
+
+                <div id="deleteSes" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full">
+                    <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="deleteSes">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <div class="p-6 text-center">
+                                <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to end this Session?</h3>
+
+                                <form action="" method="post">
+                                    <input type="text" name="idEnd" id="idEnd" value="" hidden>
+                                    <button data-modal-toggle="deleteSes" type="submit" name="endChat" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                        Yes, I'm sure
+                                    </button>
+                                </form>
+
+                                <button data-modal-toggle="deleteSes" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- <div class="absolute right-[0px]">
+                    <form action="" method="post">
+                        <input type="text" name="idEnd" id="idEnd" value="" hidden>
+                        <button type="submit" name="endChat" class="py-2 pb-3 px-4 text-sm font-medium first-line:text-center text-white bg-yellow-600 rounded-2xl hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-200">
+                            <p class="translate-y-0.5">End Session</p>
+                        </button>
+                    </form>
+                </div> -->
             </div>
 
             <div class="flex">
                 <!-- Search Chat -->
                 <div class="w-1/3 mr-6 mt-10 rounded-xl">
-                    <form>
+                    <!-- <form>
                         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                         <div class="relative">
                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -243,7 +303,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                             </div>
                             <input type="search" id="default-search" class="block p-3 pl-10 w-full text-sm text-gray-900  rounded-xl border border-gray-300 focus:ring-[#ddb07f] focus:border-[#ddb07f]" name="search" placeholder="Search Message" required>
                         </div>
-                    </form>
+                    </form> -->
                 </div>
                 <!-- User Konsultasi -->
                 <div class="w-2/3 border rounded-lg border-gray-300 bg-white">
@@ -267,44 +327,42 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                         <div class="border border-gray-300 rounded-xl bg-white">
                             <ul class="overflow-auto h-[44rem]">
                                 <li>
-                          
+
 
                                     <?php
                                     require "./db/Groups.php";
                                     $objGroup = new Groups;
                                     $groups = $objGroup->filterGroup($_SESSION['id']);
 
-                                    if(count($groups) > 0){
+                                    if (count($groups) > 0) {
                                         foreach ($groups as $key => $group) {
 
-                                            ?>
-        
-                                                <?php
-        
-                                                $idgrup = $group['group_id'];
-        
-                                                ?>
-        
-        
-                                                <a onclick="requestChat(<?= $group['group_id'] ?> , '<?= $email ?>', '<?= $group['group_name'] ?>' )" class="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none rounded-t-xl">
-                                                    <img class="object-cover w-11 h-12 rounded-full" src="Img/icons/default_profile.svg" alt="Profile Image">
-                                                    <div class="w-full pb-2">
-                                                        <div class="flex justify-between">
-                                                            <span class="block ml-2 font-bold text-[#1e3f41]"><?= $group['group_name'] ?></span>
-                                                            <span class="block ml-2 text-sm text-gray-600">25 minutes</span>
-                                                        </div>
-                                                        <span class="block ml-2 text-sm text-gray-600">Lorem Ipsum Dolor sit...</span>
-                                                    </div>
-                                                </a>
-        
-                                            <?php
-                                            }
-                                            
-                                    } else { 
-                                            
-                                            echo '<p style="padding: 20px" >Sedang tidak dalam bimbingan</p>';
+                                    ?>
 
-                                         } ?>
+                                            <?php
+
+                                            $idgrup = $group['group_id'];
+
+                                            ?>
+
+
+                                            <a onclick="requestChat(<?= $group['group_id'] ?> , '<?= $email ?>', '<?= $group['group_name'] ?>' )" class="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none rounded-t-xl">
+                                                <img class="object-cover w-11 h-12 rounded-full" src="Img/icons/default_profile.svg" alt="Profile Image">
+                                                <div class="w-full pb-2">
+                                                    <div class="flex justify-between">
+                                                        <span class="block ml-2 font-bold text-[#1e3f41]"><?= $group['group_name'] ?></span>
+                                                        <span class="block ml-2 text-sm text-gray-600">25 minutes</span>
+                                                    </div>
+                                                    <span class="block ml-2 text-sm text-gray-600">Lorem Ipsum Dolor sit...</span>
+                                                </div>
+                                            </a>
+
+                                    <?php
+                                        }
+                                    } else {
+
+                                        echo '<p style="padding: 20px" >Sedang tidak dalam bimbingan</p>';
+                                    } ?>
 
 
                                 </li>
@@ -320,101 +378,39 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                                 <div class="relative w-full p-6 overflow-y-auto h-[40rem]">
                                     <!-- tanggal -->
                                     <div class="w-1/6 mx-auto">
-                                        <div class="py-1 mb-3 text-sm text-white border bg-slate-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-center">
-                                            9 Mei 2022
-                                        </div>
+
                                     </div>
                                     <ul class="space-y-2" id="chat-container">
-                                        <!-- SISI KIRI - MURID -->
-                                        <li class="flex justify-start">
-                                            <div class="relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 rounded-xl shadow bg-[#ddb07f]">
-                                                <p class="text-[#1e3f41] font-bold">Syaiful</p>
-                                                <span class="block text-justify">P</span>
-                                                <span class="text-gray-500 text-xs flex justify-end">9:15pm</span>
-                                            </div>
-                                        </li>
-                                        <!-- SISI KIRI - MURID -->
-                                        <li class="flex justify-start">
-                                            <div class="relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 rounded-xl shadow bg-[#ddb07f]">
-                                                <p class="text-[#1e3f41] font-bold">Azzam</p>
-                                                <span class="block text-justify">PP</span>
-                                                <span class="text-gray-500 text-xs flex justify-end">9:15pm</span>
-                                            </div>
-                                        </li>
-                                        <!-- SISI KANAN - MENTOR -->
-                                        <li class="flex justify-end">
-                                            <div class="relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 bg-[#c4c4c4] rounded-xl shadow">
-                                                <span class="block text-justify">WAALAIKUMSALAM !!!</span>
-                                                <span class="text-gray-500 text-xs flex justify-end">9:15pm</span></p>
-                                            </div>
-                                        </li>
-                                        <!-- SISI KIRI - MURID -->
-                                        <li class="flex justify-start">
-                                            <div class="relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 rounded-xl shadow bg-[#ddb07f]">
-                                                <p class="text-[#1e3f41] font-bold">Rian</p>
-                                                <span class="block text-justify">hehe</span>
-                                                <span class="text-gray-500 text-xs flex justify-end">9:15pm</span>
-                                            </div>
-                                        </li>
-                                        <!-- SISI KANAN - MENTOR -->
-                                        <li class="flex justify-end">
-                                            <div class="relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 bg-[#c4c4c4] rounded-xl shadow">
-                                                <span class="block text-justify">KUNAONN???</span>
-                                                <span class="text-gray-500 text-xs flex justify-end">9:15pm</span></p>
-                                            </div>
-                                        </li>
-                                        <!-- SISI KIRI - MURID -->
-                                        <li class="flex justify-start">
-                                            <div class="relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 rounded-xl shadow bg-[#ddb07f]">
-                                                <p class="text-[#1e3f41] font-bold">Farhan</p>
-                                                <span class="block text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint distinctio officia sapiente inventore aperiam repellendus quibusdam molestias magnam aspernatur libero, rerum quam, voluptate odio? Eos, reiciendis voluptatibus pariatur sequi inventore rerum fugiat eaque. Corrupti minus sapiente repellat corporis, quos architecto enim distinctio accusantium numquam atque facilis repudiandae rem, amet quisquam.</span>
-                                                <span class="text-gray-500 text-xs flex justify-end">9:15pm</span>
-                                            </div>
-                                        </li>
-                                        <!-- SISI KANAN - MENTOR -->
-                                        <li class="flex justify-end">
-                                            <div class="relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 bg-[#c4c4c4] rounded-xl shadow">
-                                                <p class="text-[#1e3f41] font-bold">Farhan</p>
-                                                <span class="block text-justify">Ya</span>
-                                                <span class="text-gray-500 text-xs flex justify-end">9:15pm</span></p>
-                                            </div>
-                                        </li>
-                                        <!-- SISI KANAN - MENTOR -->
-                                        <li class="flex justify-end">
-                                            <div class="relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 bg-[#c4c4c4] rounded-xl shadow">
-                                                <span class="block text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, accusantium voluptatibus! Quo doloribus consectetur repudiandae aperiam ad vero sed eligendi laborum alias optio, necessitatibus iste quaerat modi magnam dolorem fugiat beatae consequatur! Saepe, suscipit pariatur? Doloribus iure quibusdam a animi fugit amet eaque esse corporis soluta numquam, deserunt quae dolores?</span>
-                                                <span class="text-gray-500 text-xs flex justify-end">9:15pm</span></p>
-                                            </div>
-                                        </li>
+
                                     </ul>
                                 </div>
 
-                                
-                                    <!-- TYPING CHAT -->
-                                    <form action="" method="POST" class="flex items-center justify-between w-full p-3 border-t border-gray-300">
-                                        <!-- EMOTICON -->
-                                        <button>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="second-btn w-6 h-6 text-gray-500 hover:text-gray-600 active:text-gray-700 focus:ring focus:bg-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                        </button>
-                                        <!-- UPLOAD FILE -->
-                                        <!-- <button>
+
+                                <!-- TYPING CHAT -->
+                                <form action="" method="POST" class="flex items-center justify-between w-full p-3 border-t border-gray-300">
+                                    <!-- EMOTICON -->
+                                    <button>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="second-btn w-6 h-6 text-gray-500 hover:text-gray-600 active:text-gray-700 focus:ring focus:bg-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </button>
+                                    <!-- UPLOAD FILE -->
+                                    <!-- <button>
                                             <label>
                                                 <i class="fa-solid fa-paperclip fa-lg text-gray-500 ml-1 cursor-pointer hover:text-gray-600 active:text-gray-700 focus:ring focus:bg-gray-300"></i>
                                                 <input type="file" name="myfile" style="display:none">
                                             </label>
                                         </button> -->
-                                        <input type="text" placeholder="Enter Message" name="message" id="message"  class="two block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:outline-none focus:text-gray-700 focus:ring-1 focus:ring-[#ddb07f] focus:border-[#ddb07f]" required />
-                                        <!-- SEND CHAT -->
-                                        <button type="submit" name="send" id="send">
-                                            <svg class="w-5 h-5 text-gray-500 origin-center transform rotate-90 hover:text-gray-600 active:text-gray-700 focus:ring focus:bg-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                                            </svg>
-                                        </button>
-                                    </form>
+                                    <input type="text" placeholder="Enter Message" name="message" id="message" class="two block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:outline-none focus:text-gray-700 focus:ring-1 focus:ring-[#ddb07f] focus:border-[#ddb07f]" required />
+                                    <!-- SEND CHAT -->
+                                    <button type="submit" name="send" id="send">
+                                        <svg class="w-5 h-5 text-gray-500 origin-center transform rotate-90 hover:text-gray-600 active:text-gray-700 focus:ring focus:bg-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                                        </svg>
+                                    </button>
+                                </form>
 
-                                
+
                             </div>
                         </div>
                     </div>
@@ -429,7 +425,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
     <script>
         function requestChat(id, email, groupName) {
 
-
+            $('#idEnd').attr('value', id);
             // mengkosongkan halaman chat box
             $('#chat-container').html("");
             console.log(groupName);
@@ -445,8 +441,8 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                 },
                 url: "action.php",
                 success: function(data, status) {
-                    
-                    let isi = JSON.parse(data)  
+
+                    let isi = JSON.parse(data)
 
                     console.log(isi);
 
@@ -455,35 +451,36 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                     console.log(message);
 
                     // melakukan looping data pesan yang sesuai dengan id grup
-                    for (let e in message){
+                    for (let e in message) {
                         console.log(e + " -> " + message[e]);
-                        
-                            // console.log(z + "->" + message[e][z]['chat_id']);
-                            let val = message[e];
-                            console.log(val['chat_id']);
-                            console.log(val['message']);
-                            console.log(val['name']);
-                            console.log(isi.userId);
 
-                            // menambahkan chat yang telah difilter ke dalam halaman     
-                            let styleBox = '';
+                        // console.log(z + "->" + message[e][z]['chat_id']);
+                        let val = message[e];
+                        console.log(val['chat_id']);
+                        console.log(val['message']);
+                        console.log(val['name']);
+                        console.log(val['user_id']);
+                        console.log(isi.userId);
 
-                            if (val['user_id'] == isi.userId) {
-                                styleBox = 'bg-red-200 text-right ml-auto';
-                                val['name'] = "Me"; 
-                            } else {
-                                styleBox = 'bg-green-200 text-left';
-                            }
+                        // menambahkan chat yang telah difilter ke dalam halaman     
+                        let styleBox = '';
 
-                            let contain =  '<div class="max-w-fit ' + styleBox + ' rounded-xl px-4 py-2 ..."><small class="font-semibold">' + val['name'] +
-                                '</small><p class="">' + val['message'] +
-                                '</p><p class="text-right text-xs text-gray-400 ">' + val['created_at'] +
-                                '</p></div>';
+                        if (val['user_id'] == isi.userId) {
+                            styleBox = 'bg-red-200 text-right ml-auto';
+                            val['name'] = "Me";
+                        } else {
+                            styleBox = 'bg-green-200 text-left';
+                        }
 
-                            // mdemasukan ke halaman chatroom 
-                            $('#chat-container').append(contain);
+                        let contain = '<div class="max-w-fit ' + styleBox + ' rounded-xl px-4 py-2 ..."><small class="font-semibold">' + val['name'] +
+                            '</small><p class="">' + val['message'] +
+                            '</p><p class="text-right text-xs text-gray-400 ">' + val['created_at'] +
+                            '</p></div>';
 
-                            
+                        // mdemasukan ke halaman chatroom 
+                        $('#chat-container').append(contain);
+
+
                     }
 
                     requestNewWSConnection(isi.portData);
@@ -509,10 +506,10 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
                         if (data.group_id == id) {
                             var box = `<li class="flex justify-end">
-                                            <div class="`+styleBox+`">
-                                                <p class="text-[#1e3f41] font-bold">`+data.from+`</p>
-                                                <span class="block text-justify">`+data.msg+`</span>
-                                                <span class="text-gray-500 text-xs flex justify-end">`+data.dt+`</span></p>
+                                            <div class="` + styleBox + `">
+                                                <p class="text-[#1e3f41] font-bold">` + data.from + `</p>
+                                                <span class="block text-justify">` + data.msg + `</span>
+                                                <span class="text-gray-500 text-xs flex justify-end">` + data.dt + `</span></p>
                                             </div>
                                          </li>`;
 
@@ -523,7 +520,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
                     $("#send").click(function(e) {
                         e.preventDefault();
-                        
+
                         let message = $('#message').val();
 
                         let uid = $('#userId').val();
@@ -573,6 +570,8 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
     </script>
 
     <script src="https://unpkg.com/flowbite@1.4.2/dist/flowbite.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.2/dist/flowbite.min.css" />
+
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
     <script>
         let btnToggle = document.getElementById('btnToggle');

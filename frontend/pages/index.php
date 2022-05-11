@@ -9,31 +9,22 @@ $orang = $objUser->getUserByEmail();
 
 // get user
 $email = $_SESSION['email'];
-$response = json_decode(file_get_contents('https://i0ifhnk0.directus.app/items/user?filter={"role_id":"' . $_SESSION['role'] . '"}'), true);
+$response = json_decode(file_get_contents('https://i0ifhnk0.directus.app/items/user?filter={"role_id":2}'), true);
 $lectures = $response['data'];
-var_dump($lectures);
 
 
-
-if($orang['role'] == 2){
-    header("location: http://localhost/websocket/web-chat-room/frontend/pages/mentor.php");
-}
 
 if (!isset($_SESSION['user'])) {
     header("location: login.php");
 }
 
-// echo $_SESSION['user'];
 
 
 
 // mendpatkan data user mentor
 
 $mentors = $objUser->getUserMentor();
-//  foreach($mentors as $mentor){
-//     echo $mentor['user_id']; echo '<br>';
-//     // echo $mentor['email'];
-//  }
+
 
 //mendapatkan data user
 $objUser->setEmail($_SESSION['user']);
@@ -50,7 +41,7 @@ $user = $objUser->getUserByEmail();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment Page</title>
+    <title>Assignment Consultation</title>
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -194,7 +185,7 @@ $user = $objUser->getUserByEmail();
                         </a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="../../logout.php"
                             class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
                             <img class="w-5" src="./Img/icons/logout_icon.svg" alt="Log out Icon">
                             <p class="font-semibold">Log out</p>
@@ -320,8 +311,8 @@ $user = $objUser->getUserByEmail();
                                     
                                     <img class="w-14" src="./Img/icons/default_profile.svg" alt="Profile Image">
                                     <div class="" id="infoUser">
-                                        <p class="text-dark-green text-base font-semibold">Edwina Christy</p>
-                                        <p class="text-light-green">Mentor System Analyst</p>
+                                        <p class="text-dark-green text-base font-semibold"></p>
+                                        <p class="text-light-green">Mentor</p>
                                     </div>
                                 </div>
                                 <div>
@@ -353,6 +344,7 @@ $user = $objUser->getUserByEmail();
                                     </div>
                                 </div>
                                 <div>
+                                    <input type="text" hidden id="user_id" value="<?= $_SESSION['id'] ?>">
                                     <label for="text"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Topic</label>
                                     <textarea id="message" rows="4" name="topic"
@@ -417,9 +409,9 @@ $user = $objUser->getUserByEmail();
                     url: '../../action/requestRoom.php',
                     success: function(data, status){
                         let userData = JSON.parse(data);
-                        console.log(userData.ava);
+                        console.log(userData);
 
-                        let info = '<p class="text-dark-green text-base font-semibold">' + userData.user.name + '</p> <p class="text-light-green">Mentor System Analyst</p>';
+                        let info = '<p class="text-dark-green text-base font-semibold">' + userData.user.user_username + '</p> <p class="text-light-green">Mentor System Analyst</p>';
                         let inputMentor = '<input type="text" value="'+ userData.user.user_id +'" name="id_mentor" hidden>';
                         $('#infoUser').html(info);
                         $('#infoUser').append(inputMentor);

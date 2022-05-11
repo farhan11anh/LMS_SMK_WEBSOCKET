@@ -53,6 +53,14 @@ if(isset($_POST['login'])) {
                 // var_dump($_SESSION);
                 $_SESSION['status'] = "login";
 
+                if($_SESSION['role'] == 3) {
+                    header('locaction: http://localhost/websocket/web-chat-room/frontend/pages/mentor_set_schedule.php');
+                } 
+
+                if($_SESSION['role'] == 2) {
+                    header('locaction: http://localhost/websocket/web-chat-room/frontend/pages/');
+                }  
+
                 header('location: ./');
             }else {
                 echo 'password tidak tepat';
