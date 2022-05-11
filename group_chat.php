@@ -245,10 +245,10 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
             </div>
 
             <!-- TOP -->
-            <div class="border rounded-lg border-gray-300 bg-white">
+            <div class="border rounded-lg border-gray-300 bg-white mt-10">
                 <!-- Countdown,-->
                 <div class="relative">
-                    <div class="absolute text-white right-[133px] top-[20px] bg-slate-500 py-2 px-4 rounded-2xl">
+                    <div class="absolute text-white right-[113px] -top-[48px] md:right-[133px] md:top-[20px] bg-slate-500 py-2 px-4 rounded-2xl">
                         <i class="mr-1 fas fa-clock"></i>
                         <span class="countdown font-mono text-base">
                             <span style="--value:00;"></span>:
@@ -261,7 +261,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                     <?php
 
                     if ($_SESSION['id'] == 2) {
-                        echo '<div class="absolute right-[20px] top-[20px]">
+                        echo '<div class="absolute right-[0px] -top-[48px] md:right-[20px] md:top-[20px]">
                     <button class="py-[10px] px-4 text-sm font-medium text-white bg-red-700 rounded-2xl hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-200" type="button" data-modal-toggle="deleteSes">
                         End Session 
                     </button>
@@ -332,7 +332,6 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                         <div class="border border-gray-300 rounded-xl bg-white">
                             <ul class="overflow-auto h-[14rem]">
                                 <li>
-
 
                                     <?php
                                     require "./db/Groups.php";
