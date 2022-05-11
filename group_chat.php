@@ -248,7 +248,6 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
             <div class="border rounded-lg border-gray-300 bg-white">
                 <!-- Countdown,-->
                 <div class="relative">
-                    <!-- Countdown -->
                     <div class="absolute text-white right-[133px] top-[20px] bg-slate-500 py-2 px-4 rounded-2xl">
                         <i class="mr-1 fas fa-clock"></i>
                         <span class="countdown font-mono text-base">
@@ -257,6 +256,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                             <span style="--value:50;"></span>
                         </span>
                     </div>
+                    
                     <!-- End Session -->
                     <?php
 
