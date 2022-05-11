@@ -7,6 +7,10 @@ $objUser = new Users;
 $objUser->setEmail($_SESSION['user']);
 $orang = $objUser->getUserByEmail();
 
+if($_SESSION['role'] == 2){
+    header("location: http://localhost/websocket/web-chat-room/frontend/pages/mentor.php");
+}
+
 // get user
 $email = $_SESSION['email'];
 $response = json_decode(file_get_contents('https://i0ifhnk0.directus.app/items/user?filter={"role_id":2}'), true);
