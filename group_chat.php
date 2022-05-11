@@ -269,7 +269,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
                     if ($_SESSION['id'] == 2) {
                         echo '<div class="absolute right-[0px] -top-[48px] md:right-[20px] md:top-[20px]">
-                    <button class="py-[10px] px-4 text-sm font-medium text-white bg-red-700 rounded-2xl hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-200" type="button" data-modal-toggle="deleteSes">
+                    <button class="py-[10px] px-4 text-sm font-medium text-white shadow-lg bg-red-700 rounded-2xl hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-200" type="button" data-modal-toggle="deleteSes">
                         End Session 
                     </button>
                     </div>';
