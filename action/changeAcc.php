@@ -64,28 +64,29 @@ if ($_POST['status'] == 'active') {
                 $objPriv = new Privillage;
                 
                 if($objPriv->savePrivillage($latestId, $userId)){
-                    header('location: http://localhost/websocket/web-chat-room/frontend/pages/mentor.php');
+                    
                 }else {
-                    header('location: http://localhost/websocket/web-chat-room/frontend/pages/mentor.php?pesan=gagal');
+                     
                 }
 
             }
         } else {
             echo "Port is full!";
         }
+
+        $email = $user[0]['email'];
+        $subject = "Konsultasi Mentor " . $mentor['name'];
+        $body = "Pengajuan konsultasimu disetujui, kunjungi link: http://localhost/websocket/web-chat-room/group_chat.php";
+        $headers = "From: Code Cation <codecationll@gmail.com>";
+    
+        if (mail($email, $subject, $body, $headers)) {
+            header("location: http://localhost/websocket/web-chat-room/frontend/pages/mentor_approve.php");
+        } else {
+            echo "email sending failed";
+        }
+
     }
 
-
-    $email = $user[0]['email'];
-    $subject = "Konsultasi Mentor " . $mentor['name'];
-    $body = "Pengajuan konsultasimu disetujui, kunjungi link: http://localhost/websocket/web-chat-room/group_chat.php" ;
-    $headers = "From: Code Cation <codecationll@gmail.com>";
-
-    if (mail($email, $subject, $body, $headers)) {
-        header("location: http://localhost/websocket/web-chat-room/frontend/pages/mentor_approve.php");
-    } else {
-        echo "email sending failed";
-    }
 }
 if ($_POST['status'] == 'reject') {
     $email = $user[0]['email'];
