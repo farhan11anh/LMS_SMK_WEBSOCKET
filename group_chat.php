@@ -182,6 +182,12 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                             </a>
                         </li>
                         <li>
+                            <a href="" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 bg-cream">
+                                <img class="w-5" src="./Img/icons/consult_icon.svg" alt="Consult Icon">
+                                <p class="text-white font-semibold">Consult</p>
+                            </a>
+                        </li>
+                        <li>
                             <button type="button"
                                 class="flex items-center gap-x-4 h-[50px] w-full rounded-xl px-4 bg-cream text-base font-normal text-gray-900 transition duration-75 group "
                                 aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
@@ -248,7 +254,8 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
             <div class="border rounded-lg border-gray-300 bg-white mt-10">
                 <!-- Countdown,-->
                 <div class="relative">
-                    <div class="absolute text-white right-[113px] -top-[48px] md:right-[133px] md:top-[20px] bg-slate-500 py-2 px-4 rounded-2xl">
+                    <div
+                        class="absolute text-white right-[113px] -top-[48px] md:right-[133px] md:top-[20px] bg-slate-500 py-2 px-4 rounded-2xl">
                         <i class="mr-1 fas fa-clock"></i>
                         <span class="countdown font-mono text-base">
                             <span style="--value:00;"></span>:
@@ -256,7 +263,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                             <span style="--value:50;"></span>
                         </span>
                     </div>
-                    
+
                     <!-- End Session -->
                     <?php
 

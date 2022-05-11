@@ -7,7 +7,7 @@ $objUser = new Users;
 $objUser->setEmail($_SESSION['user']);
 $orang = $objUser->getUserByEmail();
 
-if($_SESSION['role'] == 2){
+if ($_SESSION['role'] == 2) {
     header("location: http://localhost/websocket/web-chat-room/frontend/pages/mentor.php");
 }
 
@@ -56,7 +56,8 @@ $user = $objUser->getUserByEmail();
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.2/dist/flowbite.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 
     <script>
@@ -222,62 +223,58 @@ $user = $objUser->getUserByEmail();
                     </li>
                 </ul>
             </div>
-            <div class="flex flex-col sm:flex-row bg-white h-24 sm:h-12 w-full rounded-xl pl-3 sm:pl-5">
-                <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
-                    class="flex justify-start items-center py-2 pr-4 pl-3 w-2/5 font-medium text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">Booking
-                    <svg class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg></button>
-                <!-- Dropdown menu -->
-                <div id="dropdownNavbar"
-                    class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                    <ul class="py-1 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
-                        <li>
-                            <a href="#"
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Session</a>
+            <div class="bg-white w-full h-[50px] flex content-center px-10 rounded-xl">
+                <ul class="flex items-center gap-x-8">
+                    <a href="http://localhost/websocket/web-chat-room/frontend/pages/daftarRequest.php">
+                        <li
+                            class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                            <p>Status</p>
                         </li>
-                        <li>
-                            <a href="#"
-                                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Booking</a>
-                        </li>
-                    </ul>
-                </div>
+                    </a>
+
+
+                    <a href="">
+                        <li
+                            class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer ">
+                            Booking</li>
+                    </a>
+
+                </ul>
             </div>
 
-            <div class="grid justify-items-center gap-4 gap-y-[50px] grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 w-auto">
 
-      
-                
- 
+            <div
+                class="grid justify-items-center gap-4 gap-y-[50px] grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 w-auto">
+
+
+
+
 
                 <?php
-                
+
 
                 ?>
 
                 <!-- card bimbingan -->
-                <?php foreach($lectures as $mentor){ ?>
+                <?php foreach ($lectures as $mentor) { ?>
 
-                    <div class="bg-white h-48 w-full sm:w-4/5 rounded-xl shadow-lg text-center" onclick='bukaModal(<?= $mentor['user_id'] ?>)'
-                        data-modal-toggle="defaultModal">
-                        <div class="bg-[url('../src/coding2.jpg')] h-32 w-auto rounded-t-xl overflow-hidden bg-cover">
-                            <div class="bg-[#DDB07F] w-full h-full bg-opacity-60">
-                                <div class="grid place-content-center">
-                                    <div class="p-4">
-                                        <img src="../src/edwina.png" alt="..."
-                                            class="shadow-lg rounded-full align-middle w-24 h-24 border-none" />
-                                    </div>
+                <div class="bg-white h-48 w-full sm:w-4/5 rounded-xl shadow-lg text-center"
+                    onclick='bukaModal(<?= $mentor['user_id'] ?>)' data-modal-toggle="defaultModal">
+                    <div class="bg-[url('../src/coding2.jpg')] h-32 w-auto rounded-t-xl overflow-hidden bg-cover">
+                        <div class="bg-[#DDB07F] w-full h-full bg-opacity-60">
+                            <div class="grid place-content-center">
+                                <div class="p-4">
+                                    <img src="../src/edwina.png" alt="..."
+                                        class="shadow-lg rounded-full align-middle w-24 h-24 border-none" />
                                 </div>
                             </div>
                         </div>
-                        <h3 class="ml-5 text-left font-bold text-[#1E3F41]"><?php echo $mentor['user_username'] ?></h3>
-                    <h3 class="ml-5 text-left text-[#C4C4C4]">Mentor</h3>
                     </div>
+                    <h3 class="ml-5 text-left font-bold text-[#1E3F41]"><?php echo $mentor['user_username'] ?></h3>
+                    <h3 class="ml-5 text-left text-[#C4C4C4]">Mentor</h3>
+                </div>
 
-                    
+
                 <?php } ?>
 
 
@@ -306,13 +303,14 @@ $user = $objUser->getUserByEmail();
                         </div>
                         <!-- Modal body -->
                         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <form class="mt-4 px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="../../action/saveRoom.php" method="post">
+                            <form class="mt-4 px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
+                                action="../../action/saveRoom.php" method="post">
                                 <h3 class="text-xl font-medium text-gray-900 text-center dark:text-white">Book Your
                                     Appointment</h3>
 
                                 <!-- Mentor -->
                                 <div class="flex gap-x-4 py-1 px-10 rounded-xl" id="insert">
-                                    
+
                                     <img class="w-14" src="./Img/icons/default_profile.svg" alt="Profile Image">
                                     <div class="" id="infoUser">
                                         <p class="text-dark-green text-base font-semibold"></p>
@@ -339,7 +337,8 @@ $user = $objUser->getUserByEmail();
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Waktu</label>
                                     <div class="timepicker relative form-floating mb-3 w-full"
                                         id="input-toggle-timepicker" data-mdb-toggle-button="false">
-                                        <select name="time" id="time" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <select name="time" id="time"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 
                                         </select>
                                         <!-- <input type="text" name="time" id="time"
@@ -387,49 +386,46 @@ $user = $objUser->getUserByEmail();
     </script>
 
     <script>
-        $('#date').click(function(){
-            
-            console.log($('#date').val())
-        })
+    $('#date').click(function() {
 
-        $('#time').click(function(){
-            
-            console.log($('#time').val())
-        })
+        console.log($('#date').val())
+    })
 
+    $('#time').click(function() {
 
+        console.log($('#time').val())
+    })
     </script>
 
     <script>
-        
-            function bukaModal(id){
-                
-                $.ajax({
-                    method: "POST",
-                    data: {
-                        user_id: id,
-                        send: true 
-                    },
-                    url: '../../action/requestRoom.php',
-                    success: function(data, status){
-                        let userData = JSON.parse(data);
-                        console.log(userData);
+    function bukaModal(id) {
 
-                        let info = '<p class="text-dark-green text-base font-semibold">' + userData.user.user_username + '</p> <p class="text-light-green">Mentor System Analyst</p>';
-                        let inputMentor = '<input type="text" value="'+ userData.user.user_id +'" name="id_mentor" hidden>';
-                        $('#infoUser').html(info);
-                        $('#infoUser').append(inputMentor);
+        $.ajax({
+            method: "POST",
+            data: {
+                user_id: id,
+                send: true
+            },
+            url: '../../action/requestRoom.php',
+            success: function(data, status) {
+                let userData = JSON.parse(data);
+                console.log(userData);
 
-                        $('#time').html('')
-                        userData.ava.forEach(e => $('#time').append(`<option value='` + e.start_time+ `' >` + e.start_time+ `</option>`)
-);
+                let info = '<p class="text-dark-green text-base font-semibold">' + userData.user
+                    .user_username + '</p> <p class="text-light-green">Mentor System Analyst</p>';
+                let inputMentor = '<input type="text" value="' + userData.user.user_id +
+                    '" name="id_mentor" hidden>';
+                $('#infoUser').html(info);
+                $('#infoUser').append(inputMentor);
+
+                $('#time').html('')
+                userData.ava.forEach(e => $('#time').append(`<option value='` + e.start_time + `' >` + e
+                    .start_time + `</option>`));
 
 
-                    }
-                })
             }
-        
-
+        })
+    }
     </script>
 
 </body>
