@@ -540,7 +540,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
 
 
-    <script src="vanillaEmojiPicker.js"></script>
+    <script src="frontend/pages/vanillaEmojiPicker.js"></script>
     <script>
     new EmojiPicker({
         trigger: [{
