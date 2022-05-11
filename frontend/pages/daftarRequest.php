@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+require '../../db/Acceptance.php';
+
+if($_SESSION['role'] == 2){
+    header("location: http://localhost/websocket/web-chat-room/frontend/pages/mentor.php");
+}
+
+// acceptance
+$objAccept = new Acceptance;
+$acception = $objAccept->getDataById($_SESSION['id']);
+var_dump($acception);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

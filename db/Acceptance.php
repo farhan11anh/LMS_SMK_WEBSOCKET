@@ -88,8 +88,8 @@ class Acceptance{
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':time', $this->time);
-        $statement->bindParam(':topic', $this->topic);
-        $statement->bindParam(':user_id', $this->user_id);
+      
+
 
         try{
             if($statement->execute()) {
@@ -105,6 +105,16 @@ class Acceptance{
 
     public function getAll(){
         $statement = $this->db_conn->prepare("SELECT * FROM acceptance");
+
+        $statement->execute();
+        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public function getDataByIdUser($user_id){
+        $statement = $this->db_conn->prepare("SELECT * FROM acceptance where user_id = :user_id ");
+        $statement->bindParam(':user_id', $user_id);
 
         $statement->execute();
         $data = $statement->fetchAll(PDO::FETCH_ASSOC);
