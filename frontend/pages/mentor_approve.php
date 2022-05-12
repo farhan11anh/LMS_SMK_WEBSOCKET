@@ -203,7 +203,7 @@ $acceptances = $acc->getApprove();
 <body>
     <div class="responsive-top p-5">
         <div class="container flex flex-column justify-between mt-4 mb-4">
-            <img class="w-[150px] logo-smk1" src="../src/logofix.png" alt="Logo SMK">
+            <img class="w-[280px] logo-smk1" src="../src/code.svg" alt="Logo SMK">
             <img src="Img/icons/toggle_icons.svg" alt="toggle_dashboard" class="w-8 cursor-pointer" id="btnToggle2">
         </div>
     </div>
@@ -215,7 +215,7 @@ $acceptances = $acc->getApprove();
                 <!-- Header -->
                 <div class="flex items-center space-x-4 px-2">
                     <img src="Img/icons/toggle_icons.svg" alt="toggle_dashboard" class="w-8 cursor-pointer" id="btnToggle">
-                    <img class="w-[150px] logo-smk" src="../src/logofix.png" alt="Logo SMK">
+                    <img class="logo-smk -translate-x-6 " src="../src/code.svg" alt="Logo SMK">
                 </div>
 
                 <hr class="border-[1px] border-opacity-50 border-[#93BFC1]">
