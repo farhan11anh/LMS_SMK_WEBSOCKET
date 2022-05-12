@@ -308,6 +308,12 @@ $user = $objUser->getUserByEmail();
                     <li>
                         <a class="text-light-green" href="#">Consult</a>
                     </li>
+                    <li>
+                        <span class="text-light-green">/</span>
+                    </li>
+                    <li>
+                        <a class="text-light-green font-semibold" href="#">Booking</a>
+                    </li>
                 </ul>
             </div>
             <div class="bg-white w-full h-[50px] flex content-center px-10 rounded-xl">
