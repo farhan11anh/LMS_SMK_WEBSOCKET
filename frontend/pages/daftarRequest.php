@@ -284,7 +284,7 @@ var_dump($acception);
                         <span class="text-light-green">/</span>
                     </li>
                     <li>
-                        <a class="text-light-green font-semibold" href="#">Status</a>
+                        <a class="text-light-green font-semibold" href="">Status</a>
                     </li>
                 </ul>
             </div>
