@@ -359,10 +359,6 @@ $user = $objUser->getUserByEmail();
 
                 <?php } ?>
 
-
-
-
-
             </div>
             <!-- Main modal -->
             <div id="defaultModal" tabindex="-1" aria-hidden="true"
