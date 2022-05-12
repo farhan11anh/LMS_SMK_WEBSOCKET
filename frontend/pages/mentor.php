@@ -317,7 +317,7 @@ $grp = new Groups;
                         <span class="text-light-green">/</span>
                     </li>
                     <li>
-                        <a class="text-light-green font-semibold" href="#">Booking</a>
+                        <a class="text-light-green font-semibold" href="">Booking</a>
                     </li>
                 </ul>
             </div>

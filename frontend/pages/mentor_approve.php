@@ -301,7 +301,7 @@ $acceptances = $acc->getApprove();
                         <span class="text-light-green">/</span>
                     </li>
                     <li>
-                        <a class="text-light-green font-semibold" href="#">Session</a>
+                        <a class="text-light-green font-semibold" href="">Session</a>
                     </li>
                 </ul>
             </div>
