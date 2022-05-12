@@ -65,153 +65,152 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
 
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"> -->
     <script src="https://kit.fontawesome.com/0c74db80aa.js" crossorigin="anonymous"></script>
     <script>
-    tailwind.config = {
-        theme: {
-            extend: {
-                fontFamily: {
-                    montserrat: ["Montserrat"],
-                },
-                colors: {
-                    "dark-green": "#1E3F41",
-                    "light-green": "#659093",
-                    "cream": "#DDB07F",
-                    "cgray": "#F5F5F5",
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        montserrat: ["Montserrat"],
+                    },
+                    colors: {
+                        "dark-green": "#1E3F41",
+                        "light-green": "#659093",
+                        "cream": "#DDB07F",
+                        "cgray": "#F5F5F5",
+                    }
                 }
             }
         }
-    }
     </script>
     <style>
-    .sidebar #username_logo {
-        display: none;
-    }
-
-    #profil_image {
-        display: none !important;
-    }
-
-    .responsive-top {
-        display: none;
-    }
-
-    .active {
-        color: #DDB07F !important;
-        border-bottom: solid 4px #DDB07F;
-    }
-
-    .in-active {
-        width: 80px !important;
-        padding: 20px 15px !important;
-        transition: .5s ease-in-out;
-    }
-
-    .in-active ul li p {
-        display: none !important;
-    }
-
-    .in-active ul li a {
-        padding: 15px !important;
-    }
-
-    .in-active h2,
-    .in-active h4,
-    .in-active .logo-smk {
-        display: none !important;
-    }
-
-    .hidden {
-        display: none !important;
-    }
-
-    .sidebar {
-        transition: .5s ease-in-out;
-    }
-
-    @media screen and (max-width: 414px) {
-        .responsive-top {
-            display: block;
+        .sidebar #username_logo {
+            display: none;
         }
 
         #profil_image {
-            display: flex !important;
-        }
-
-        .logo-smk {
             display: none !important;
         }
 
-        .assignment-table th,
-        .assignment-table td {
-            font-size: 9px;
+        .responsive-top {
+            display: none;
         }
 
-        .assignment-table img {
-            width: 45%;
-        }
-
-        .sidebar h2,
-        .sidebar h4,
-        .sidebar .logo-incareer,
-        .sidebar hr,
-        .sidebar #btnToggle {
-            display: none !important;
-        }
-
-        .sidebar #username_logo {
-            display: block;
-            margin: 0;
-        }
-
-        .breadcrumb ul {
-            font-size: .5rem;
-        }
-
-        .topic-title p {
-            font-size: 1.35rem;
-        }
-
-        .mentor-profile img {
-            width: 20%;
-        }
-
-        .mentor-profile p {
-            font-size: .5rem;
-        }
-
-        .direction p {
-            font-size: .5rem;
-        }
-
-        .tab-menu ul {
-            font-size: .6rem;
+        .active {
+            color: #DDB07F !important;
+            border-bottom: solid 4px #DDB07F;
         }
 
         .in-active {
             width: 80px !important;
-            padding: 10px 15px !important;
+            padding: 20px 15px !important;
             transition: .5s ease-in-out;
         }
 
+        .in-active ul li p {
+            display: none !important;
+        }
+
+        .in-active ul li a {
+            padding: 15px !important;
+        }
+
+        .in-active h2,
+        .in-active h4,
+        .in-active .logo-smk {
+            display: none !important;
+        }
+
+        .hidden {
+            display: none !important;
+        }
 
         .sidebar {
-            position: absolute;
-            z-index: 1;
+            transition: .5s ease-in-out;
         }
 
-        .rightbar {
-            margin-left: 80px;
+        @media screen and (max-width: 414px) {
+            .responsive-top {
+                display: block;
+            }
+
+            #profil_image {
+                display: flex !important;
+            }
+
+            .logo-smk {
+                display: none !important;
+            }
+
+            .assignment-table th,
+            .assignment-table td {
+                font-size: 9px;
+            }
+
+            .assignment-table img {
+                width: 45%;
+            }
+
+            .sidebar h2,
+            .sidebar h4,
+            .sidebar .logo-incareer,
+            .sidebar hr,
+            .sidebar #btnToggle {
+                display: none !important;
+            }
+
+            .sidebar #username_logo {
+                display: block;
+                margin: 0;
+            }
+
+            .breadcrumb ul {
+                font-size: .5rem;
+            }
+
+            .topic-title p {
+                font-size: 1.35rem;
+            }
+
+            .mentor-profile img {
+                width: 20%;
+            }
+
+            .mentor-profile p {
+                font-size: .5rem;
+            }
+
+            .direction p {
+                font-size: .5rem;
+            }
+
+            .tab-menu ul {
+                font-size: .6rem;
+            }
+
+            .in-active {
+                width: 80px !important;
+                padding: 10px 15px !important;
+                transition: .5s ease-in-out;
+            }
+
+
+            .sidebar {
+                position: absolute;
+                z-index: 1;
+            }
+
+            .rightbar {
+                margin-left: 80px;
+            }
+
+
         }
-
-
-    }
     </style>
 
 </head>
@@ -219,7 +218,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 <body class="overflow-hidden">
     <div class="responsive-top p-5">
         <div class="container flex flex-column justify-between mt-4 mb-4">
-            <img class="w-[280px] logo-smk1" src="img/logo/logofix.png" alt="Logo SMK">
+            <img class="w-[280px] logo-smk1" src="frontend/src/code.svg" alt="Logo SMK">
             <img src="Img/icons/toggle_icons.svg" alt="toggle_dashboard" class="w-8 cursor-pointer" id="btnToggle2">
         </div>
     </div>
@@ -230,9 +229,8 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
             <div class="flex flex-col gap-y-6">
                 <!-- Header -->
                 <div class="flex items-center space-x-4 px-2">
-                    <img src="Img/icons/toggle_icons.svg" alt="toggle_dashboard" class="w-8 cursor-pointer"
-                        id="btnToggle">
-                    <img class="w-[150px] logo-smk" src="img/logo/logofix.png" alt="Logo Codecation">
+                    <img src="Img/icons/toggle_icons.svg" alt="toggle_dashboard" class="w-8 cursor-pointer" id="btnToggle">
+                    <img class="logo-smk -translate-x-6 " src="frontend/src/code.svg" alt="Logo SMK">
                 </div>
 
                 <hr class="border-[1px] border-opacity-50 border-[#93BFC1]">
@@ -241,29 +239,25 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                 <div>
                     <ul class="flex flex-col gap-y-1">
                         <li>
-                            <a href="#"
-                                class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
+                            <a href="#" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
                                 <img class="w-5" src="Img/icons/home_icon.svg" alt="Dashboard Icon">
                                 <p class="font-semibold">Dashboard</p>
                             </a>
                         </li>
                         <li>
-                            <a href="#"
-                                class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
+                            <a href="#" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
                                 <img class="w-5" src="Img/icons/course_icon.svg" alt="Course Icon">
                                 <p class="font-semibold">Course</p>
                             </a>
                         </li>
                         <li>
-                            <a href=""
-                                class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
+                            <a href="" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
                                 <img class="w-5" src="Img/icons/schedule_icon.svg" alt="Schedule Icon">
                                 <p class="font-semibold">Schedule</p>
                             </a>
                         </li>
                         <li>
-                            <a href=""
-                                class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
+                            <a href="" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
                                 <img class="w-5" src="Img/icons/score_icon.svg" alt="Score Icon">
                                 <p class="font-semibold">Score</p>
                             </a>
@@ -283,15 +277,13 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
             <div>
                 <ul class="flex flex-col ">
                     <li>
-                        <a href="#"
-                            class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
+                        <a href="#" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
                             <img class="w-5" src="Img/icons/help_icon.svg" alt="Help Icon">
                             <p class="font-semibold">Help</p>
                         </a>
                     </li>
                     <li>
-                        <a href="logout.php"
-                            class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
+                        <a href="logout.php" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
                             <img class="w-5" src="Img/icons/logout_icon.svg" alt="Log out Icon">
                             <p class="font-semibold">Log out</p>
                         </a>
@@ -317,8 +309,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
             <div class="border rounded-lg border-gray-300 bg-white mt-10">
                 <!-- Countdown,-->
                 <div class="relative">
-                    <div
-                        class="absolute text-white right-[113px] -top-[48px] md:right-[133px] md:top-[20px] bg-slate-500 py-2 px-4 rounded-2xl">
+                    <div class="absolute text-white right-[113px] -top-[48px] md:right-[133px] md:top-[20px] bg-slate-500 py-2 px-4 rounded-2xl">
                         <i class="mr-1 fas fa-clock"></i>
                         <span class="countdown font-mono text-base">
                             <span style="--value:00;"></span>:
@@ -341,39 +332,29 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
                     ?>
 
-                    <div id="deleteSes" tabindex="-1"
-                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full">
+                    <div id="deleteSes" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full">
                         <div class="relative p-4 w-full max-w-md h-full md:h-auto">
                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                <button type="button"
-                                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-                                    data-modal-toggle="deleteSes">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                            clip-rule="evenodd"></path>
+                                <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="deleteSes">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                     </svg>
                                 </button>
                                 <div class="p-6 text-center">
-                                    <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure
                                         you want to end this Session?</h3>
 
                                     <form action="" method="post">
                                         <input type="text" name="idEnd" id="idEnd" value="" hidden>
-                                        <button data-modal-toggle="deleteSes" type="submit" name="endChat"
-                                            class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                        <button data-modal-toggle="deleteSes" type="submit" name="endChat" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
                                             Yes, I'm sure
                                         </button>
                                     </form>
 
-                                    <button data-modal-toggle="deleteSes" type="button"
-                                        class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No,
+                                    <button data-modal-toggle="deleteSes" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No,
                                         cancel</button>
                                 </div>
                             </div>
@@ -413,27 +394,24 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
                                     ?>
 
-                                    <?php
+                                            <?php
 
                                             $idgrup = $group['group_id'];
 
                                             ?>
 
 
-                                    <a onclick="requestChat(<?= $group['group_id'] ?> , '<?= $email ?>', '<?= $group['group_name'] ?>' )"
-                                        class="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none ">
-                                        <img class="object-cover w-11 h-12 rounded-full"
-                                            src="Img/icons/default_profile.svg" alt="Profile Image">
-                                        <div class="w-full pb-2">
-                                            <div class="flex justify-between">
-                                                <span
-                                                    class="block ml-2 font-bold text-[#1e3f41]"><?= $group['group_name'] ?></span>
-                                                <span class="block ml-2 text-sm text-gray-600">25 minutes</span>
-                                            </div>
-                                            <span class="block ml-2 text-sm text-gray-600">Lorem Ipsum Dolor
-                                                sit...</span>
-                                        </div>
-                                    </a>
+                                            <a onclick="requestChat(<?= $group['group_id'] ?> , '<?= $email ?>', '<?= $group['group_name'] ?>' )" class="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none ">
+                                                <img class="object-cover w-11 h-12 rounded-full" src="Img/icons/default_profile.svg" alt="Profile Image">
+                                                <div class="w-full pb-2">
+                                                    <div class="flex justify-between">
+                                                        <span class="block ml-2 font-bold text-[#1e3f41]"><?= $group['group_name'] ?></span>
+                                                        <span class="block ml-2 text-sm text-gray-600">25 minutes</span>
+                                                    </div>
+                                                    <span class="block ml-2 text-sm text-gray-600">Lorem Ipsum Dolor
+                                                        sit...</span>
+                                                </div>
+                                            </a>
 
                                     <?php
                                         }
@@ -465,15 +443,11 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
 
                                 <!-- TYPING CHAT -->
-                                <form action="" method="POST"
-                                    class="flex items-center justify-between w-full p-3 border-t border-gray-300">
+                                <form action="" method="POST" class="flex items-center justify-between w-full p-3 border-t border-gray-300">
                                     <!-- EMOTICON -->
                                     <button>
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="second-btn w-6 h-6 text-gray-500 hover:text-gray-600 active:text-gray-700 focus:ring focus:bg-gray-300"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="second-btn w-6 h-6 text-gray-500 hover:text-gray-600 active:text-gray-700 focus:ring focus:bg-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </button>
                                     <!-- UPLOAD FILE -->
@@ -483,15 +457,11 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                                                 <input type="file" name="myfile" style="display:none">
                                             </label>
                                         </button> -->
-                                    <input type="text" placeholder="Enter Message" name="message" id="message"
-                                        class="two block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:outline-none focus:text-gray-700 focus:ring-1 focus:ring-[#ddb07f] focus:border-[#ddb07f]"
-                                        required />
+                                    <input type="text" placeholder="Enter Message" name="message" id="message" class="two block w-full py-2 pl-4 mx-3 bg-gray-100 rounded-full outline-none focus:outline-none focus:text-gray-700 focus:ring-1 focus:ring-[#ddb07f] focus:border-[#ddb07f]" required />
                                     <!-- SEND CHAT -->
                                     <button type="submit" name="send" id="send">
-                                        <svg class="w-5 h-5 text-gray-500 origin-center transform rotate-90 hover:text-gray-600 active:text-gray-700 focus:ring focus:bg-gray-300"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path
-                                                d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                                        <svg class="w-5 h-5 text-gray-500 origin-center transform rotate-90 hover:text-gray-600 active:text-gray-700 focus:ring focus:bg-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
                                         </svg>
                                     </button>
                                 </form>
@@ -509,92 +479,92 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
 
     <script>
-    function requestChat(id, email, groupName) {
+        function requestChat(id, email, groupName) {
 
-        $('#idEnd').attr('value', id);
-        // mengkosongkan halaman chat box
-        $('#chat-container').html("");
-        console.log(groupName);
-        $('#tittleGroup').html(groupName);
+            $('#idEnd').attr('value', id);
+            // mengkosongkan halaman chat box
+            $('#chat-container').html("");
+            console.log(groupName);
+            $('#tittleGroup').html(groupName);
 
-        console.log(email);
+            console.log(email);
 
-        $.ajax({
-            method: "POST",
-            data: {
-                group_id: id,
-                user_email: email
-            },
-            url: "action.php",
-            success: function(data, status) {
+            $.ajax({
+                method: "POST",
+                data: {
+                    group_id: id,
+                    user_email: email
+                },
+                url: "action.php",
+                success: function(data, status) {
 
-                let isi = JSON.parse(data)
+                    let isi = JSON.parse(data)
 
-                console.log(isi);
+                    console.log(isi);
 
-                // ambil data pesan
-                let message = isi.message;
-                console.log(message);
+                    // ambil data pesan
+                    let message = isi.message;
+                    console.log(message);
 
-                // melakukan looping data pesan yang sesuai dengan id grup
-                for (let e in message) {
-                    console.log(e + " -> " + message[e]);
+                    // melakukan looping data pesan yang sesuai dengan id grup
+                    for (let e in message) {
+                        console.log(e + " -> " + message[e]);
 
-                    // console.log(z + "->" + message[e][z]['chat_id']);
-                    let val = message[e];
-                    console.log(val['chat_id']);
-                    console.log(val['message']);
-                    console.log(val['name']);
-                    console.log(val['user_id']);
-                    console.log(isi.userId);
+                        // console.log(z + "->" + message[e][z]['chat_id']);
+                        let val = message[e];
+                        console.log(val['chat_id']);
+                        console.log(val['message']);
+                        console.log(val['name']);
+                        console.log(val['user_id']);
+                        console.log(isi.userId);
 
-                    // menambahkan chat yang telah difilter ke dalam halaman     
-                    let styleBox = '';
+                        // menambahkan chat yang telah difilter ke dalam halaman     
+                        let styleBox = '';
 
-                    if (val['user_id'] == isi.userId) {
-                        styleBox = 'bg-red-200 text-right ml-auto';
-                        val['name'] = "Me";
-                    } else {
-                        styleBox = 'bg-green-200 text-left';
+                        if (val['user_id'] == isi.userId) {
+                            styleBox = 'bg-red-200 text-right ml-auto';
+                            val['name'] = "Me";
+                        } else {
+                            styleBox = 'bg-green-200 text-left';
+                        }
+
+                        let contain = '<div class="max-w-fit ' + styleBox +
+                            ' rounded-xl px-4 py-2 ..."><small class="font-semibold">' + val['name'] +
+                            '</small><p class="">' + val['message'] +
+                            '</p><p class="text-right text-xs text-gray-400 ">' + val['created_at'] +
+                            '</p></div>';
+
+                        // mdemasukan ke halaman chatroom 
+                        $('#chat-container').append(contain);
+
+
                     }
 
-                    let contain = '<div class="max-w-fit ' + styleBox +
-                        ' rounded-xl px-4 py-2 ..."><small class="font-semibold">' + val['name'] +
-                        '</small><p class="">' + val['message'] +
-                        '</p><p class="text-right text-xs text-gray-400 ">' + val['created_at'] +
-                        '</p></div>';
-
-                    // mdemasukan ke halaman chatroom 
-                    $('#chat-container').append(contain);
+                    requestNewWSConnection(isi.portData);
+                    var conn = new WebSocket("ws://localhost:" + isi.portData);
 
 
-                }
-
-                requestNewWSConnection(isi.portData);
-                var conn = new WebSocket("ws://localhost:" + isi.portData);
-
-
-                console.log(conn)
-                conn.onopen = function(e) {
-                    console.log("Connection Establish...");
-                }
-
-                conn.onmessage = function(e) {
-                    // console.log(e.data);
-                    data = JSON.parse(e.data);
-
-                    var styleBox = '';
-
-                    if (data.from == "Me") {
-                        styleBox =
-                            'relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 rounded-xl shadow bg-[#ddb07f]';
-                    } else {
-                        styleBox =
-                            'relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 bg-[#c4c4c4] rounded-xl shadow';
+                    console.log(conn)
+                    conn.onopen = function(e) {
+                        console.log("Connection Establish...");
                     }
 
-                    if (data.group_id == id) {
-                        var box = `<li class="flex justify-end">
+                    conn.onmessage = function(e) {
+                        // console.log(e.data);
+                        data = JSON.parse(e.data);
+
+                        var styleBox = '';
+
+                        if (data.from == "Me") {
+                            styleBox =
+                                'relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 rounded-xl shadow bg-[#ddb07f]';
+                        } else {
+                            styleBox =
+                                'relative max-w-xl min-w-[17%] px-4 py-2 text-gray-700 bg-[#c4c4c4] rounded-xl shadow';
+                        }
+
+                        if (data.group_id == id) {
+                            var box = `<li class="flex justify-end">
                                             <div class="` + styleBox + `">
                                                 <p class="text-[#1e3f41] font-bold">` + data.from + `</p>
                                                 <span class="block text-justify">` + data.msg + `</span>
@@ -602,60 +572,60 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                                             </div>
                                          </li>`;
 
-                        $("#chat-container").append(box);
+                            $("#chat-container").append(box);
+                        }
+
                     }
 
+                    $("#send").click(function(e) {
+                        e.preventDefault();
+
+                        let message = $('#message').val();
+
+                        let uid = $('#userId').val();
+
+                        let chatData = {
+                            user_id: uid,
+                            msg: message,
+                            group_id: id,
+                        };
+                        // console.log(chatData)
+
+                        conn.send(JSON.stringify(chatData));
+                        // console.log(chatData);
+
+                        document.getElementById("message").value = "";
+                    })
                 }
+            })
+        }
 
-                $("#send").click(function(e) {
-                    e.preventDefault();
-
-                    let message = $('#message').val();
-
-                    let uid = $('#userId').val();
-
-                    let chatData = {
-                        user_id: uid,
-                        msg: message,
-                        group_id: id,
-                    };
-                    // console.log(chatData)
-
-                    conn.send(JSON.stringify(chatData));
-                    // console.log(chatData);
-
-                    document.getElementById("message").value = "";
-                })
-            }
-        })
-    }
-
-    function requestNewWSConnection(data) {
-        $.post("./bin/chat-server.php", {
-            data: data
-        }, function(data, status) {
-            console.log(data);
-        })
-    }
+        function requestNewWSConnection(data) {
+            $.post("./bin/chat-server.php", {
+                data: data
+            }, function(data, status) {
+                console.log(data);
+            })
+        }
     </script>
 
 
 
     <script src="frontend/pages/vanillaEmojiPicker.js"></script>
     <script>
-    new EmojiPicker({
-        trigger: [{
-                selector: ".first-btn",
-                insertInto: [".one", ".two"], // '.selector' can be used without array
-            },
-            {
-                selector: ".second-btn",
-                insertInto: ".two",
-            },
-        ],
-        closeButton: true,
-        //specialButtons: green
-    });
+        new EmojiPicker({
+            trigger: [{
+                    selector: ".first-btn",
+                    insertInto: [".one", ".two"], // '.selector' can be used without array
+                },
+                {
+                    selector: ".second-btn",
+                    insertInto: ".two",
+                },
+            ],
+            closeButton: true,
+            //specialButtons: green
+        });
     </script>
 
     <script src="https://unpkg.com/flowbite@1.4.2/dist/flowbite.js"></script>
@@ -663,14 +633,14 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
     <script>
-    let btnToggle = document.getElementById('btnToggle');
-    let sidebar = document.querySelector('.sidebar');
-    btnToggle.onclick = function() {
-        sidebar.classList.toggle('in-active');
-    }
-    btnToggle2.onclick = function() {
-        sidebar.classList.toggle('in-active');
-    }
+        let btnToggle = document.getElementById('btnToggle');
+        let sidebar = document.querySelector('.sidebar');
+        btnToggle.onclick = function() {
+            sidebar.classList.toggle('in-active');
+        }
+        btnToggle2.onclick = function() {
+            sidebar.classList.toggle('in-active');
+        }
     </script>
 
 </body>
