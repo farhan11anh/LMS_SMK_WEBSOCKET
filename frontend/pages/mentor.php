@@ -143,21 +143,9 @@ $grp = new Groups;
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
-                                <img class="w-5" src="./Img/icons/discussion_icon.svg" alt="Forum Icon">
-                                <p class="font-semibold">Forum Dicussion</p>
-                            </a>
-                        </li>
-                        <li>
                             <a href="" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
                                 <img class="w-5" src="./Img/icons/schedule_icon.svg" alt="Schedule Icon">
                                 <p class="font-semibold">Schedule</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
-                                <img class="w-5" src="./Img/icons/attendance_icon.svg" alt="Attendance Icon">
-                                <p class="font-semibold">Attendance</p>
                             </a>
                         </li>
                         <li>
