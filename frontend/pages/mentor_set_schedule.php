@@ -12,7 +12,7 @@ $objUser->setEmail($_SESSION['user']);
 $orang = $objUser->getUserByEmail();
 
 
-if($_SESSION['role'] == 3){
+if ($_SESSION['role'] == 3) {
     header("location: http://localhost/websocket/web-chat-room/frontend/pages");
 }
 
@@ -49,11 +49,12 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <!-- Tailwindcss -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
     <script>
     tailwind.config = {
@@ -228,18 +229,21 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                 <ul class="flex items-center gap-x-8">
                     <a href="mentor_approve.php">
                         <li
-                        class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                            class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
                             <p>Session</p>
                         </li>
                     </a>
                     <a href="mentor.php">
                         <li
-                        class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                            class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
                             Booking</li>
                     </a>
-                    <a href="http://localhost/websocket/web-chat-room/frontend/pages/mentor_set_schedule.php"><li class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
-                        <p>Add Schedule</p>
-                    </li></a>
+                    <a href="http://localhost/websocket/web-chat-room/frontend/pages/mentor_set_schedule.php">
+                        <li
+                            class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                            <p>Add Schedule</p>
+                        </li>
+                    </a>
                 </ul>
             </div>
             <div class="flex flex-row-reverse ...">
@@ -253,7 +257,7 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                     <colgroup>
                         <col span="1" style="width: 10%">
                         <col span="1" style="width: 10%">
-   
+
                     </colgroup>
                     <thead>
                         <tr class="text-dark-green">
@@ -263,7 +267,7 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                     </thead>
                     <tbody>
 
-                        <?php foreach($dataAva as $data){ ?>
+                        <?php foreach ($dataAva as $data) { ?>
                         <tr>
                             <td class="border-b px-4 py-2 text-center"><?= $data['start_time'] ?></td>
                             <td class="border-b px-4 py-2 text-center"><?= $data['end_time'] ?></td>
@@ -295,7 +299,8 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                     </div>
                     <!-- Modal body -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        <form class="mt-4 px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="../../action/sendTime.php" method="post">
+                        <form class="mt-4 px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
+                            action="../../action/sendTime.php" method="post">
                             <h3 class="text-xl font-medium text-gray-900 text-center dark:text-white">Set Your
                                 Schedule</h3>
 
@@ -303,44 +308,45 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                             <div class="flex gap-x-4 py-1 px-10 rounded-xl">
                                 <img class="w-14" src="./Img/icons/default_profile.svg" alt="Profile Image">
                                 <div class="">
-                                    <p class="text-dark-green text-base font-semibold" id="mentorName">Edwina Christy | 0018990
+                                    <p class="text-dark-green text-base font-semibold" id="mentorName">Edwina Christy |
+                                        0018990
                                     </p>
                                     <p class="text-light-green">Mentor System Analyst</p>
                                 </div>
                             </div>
-                            
-                         
-                                <div>
-                                    <label for="text"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Waktu
-                                        Mulai</label>
-                                    <div class="timepicker relative form-floating mb-3 w-full" id="input-toggle-timepicker"
-                                        data-mdb-toggle-button="false">
-                                        <input type="datetime-local" step="0.001" name="timeStart"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Select a time"/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="text"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Waktu
-                                        Selesai</label>
-                                    <div class="timepicker relative form-floating mb-3 w-full" id="input-toggle-timepicker"
-                                        data-mdb-toggle-button="false">
-                                        <input type="datetime-local" step="0.001" name="timeEnd"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Select a time" />
-                                    </div>
-                                    <input type="text" name="user_id" value="<?= $_SESSION['id'] ?>" hidden>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" 
-                                        class=" items-center focus:outline-none border border-yellow-400 text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">Accept</button>
 
-                                    <button data-modal-toggle="defaultModal" type="button"
-                                        class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Cancel</button>
+
+                            <div>
+                                <label for="text"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Waktu
+                                    Mulai</label>
+                                <div class="timepicker relative form-floating mb-3 w-full" id="input-toggle-timepicker"
+                                    data-mdb-toggle-button="false">
+                                    <input type="datetime-local" step="0" name="timeStart"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Select a time" />
                                 </div>
-                          
+                            </div>
+                            <div>
+                                <label for="text"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Waktu
+                                    Selesai</label>
+                                <div class="timepicker relative form-floating mb-3 w-full" id="input-toggle-timepicker"
+                                    data-mdb-toggle-button="false">
+                                    <input type="datetime-local" step="0" name="timeEnd"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Select a time" />
+                                </div>
+                                <input type="text" name="user_id" value="<?= $_SESSION['id'] ?>" hidden>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit"
+                                    class=" items-center focus:outline-none border border-yellow-400 text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">Accept</button>
+
+                                <button data-modal-toggle="defaultModal" type="button"
+                                    class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Cancel</button>
+                            </div>
+
                     </div>
 
 
@@ -355,51 +361,49 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
     </div>
 
     <script>
-    
-        function openModal(id, uname){
+    function openModal(id, uname) {
 
-            $('#mentorName').html(uname);
+        $('#mentorName').html(uname);
 
-            console.log(uname)
+        console.log(uname)
+        $.ajax({
+            method: "POST",
+            data: {
+                user_id: id,
+                send: true
+            },
+            url: '../../action/schedule.php',
+            success: function(data, status) {
+
+                console.log(JSON.parse(data));
+
+                let user = JSON.parse(data);
+
+                let name = user.name;
+
+                $('#mentorName').html(uname);
+
+
+            }
+
+
+        })
+
+        function sendForm(id) {
+            console.log(id)
             $.ajax({
                 method: "POST",
                 data: {
-                    user_id: id,
-                    send: true
+                    user_id: id
                 },
-                url: '../../action/schedule.php',
-                success: function(data, status){
-                    
-                    console.log(JSON.parse(data));
-
-                    let user = JSON.parse(data);
-
-                    let name = user.name;
-
-                    $('#mentorName').html(uname);
-                    
+                url: '../../action/sendTime.php',
+                success: function(data, status) {
 
                 }
-
-                
             })
-
-            function sendForm(id){
-                console.log(id)
-                $.ajax({
-                    method: "POST",
-                    data: {
-                        user_id: id
-                    },
-                    url: '../../action/sendTime.php',
-                    success: function(data, status){
-
-                    }
-                })
-            }
-            
         }
 
+    }
     </script>
 
     <script src="https://unpkg.com/flowbite@1.4.2/dist/flowbite.js"></script>
@@ -412,7 +416,7 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
     }
     </script>
 
-<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.2/dist/flowbite.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.2/dist/flowbite.min.css" />
 
 </body>
 
