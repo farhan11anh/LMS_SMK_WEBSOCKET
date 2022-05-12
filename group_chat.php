@@ -131,7 +131,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                 <div class="flex items-center space-x-4 px-2">
                     <img src="Img/icons/toggle_icons.svg" alt="toggle_dashboard" class="w-8 cursor-pointer"
                         id="btnToggle">
-                    <img class="w-[150px] logo-smk" src="img/logo/logofix.png" alt="Logo In Career">
+                    <img class="w-[150px] logo-smk" src="img/logo/logofix.png" alt="Logo Codecation">
                 </div>
 
                 <hr class="border-[1px] border-opacity-50 border-[#93BFC1]">
