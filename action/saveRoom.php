@@ -8,7 +8,8 @@ if(!empty($_POST['submit'])){
     $email = $_POST['email'];
     $time = $_POST['time'];
     $topic = $_POST['topic'];
-    $mentor = $_POST['id_mentor'];
+    $mentor = $_POST['lectureId'];
+    $student = $_POST['studentId'];
 
     $objAcc = new Acceptance;
     $objAcc->setName($name);
@@ -16,6 +17,8 @@ if(!empty($_POST['submit'])){
     $objAcc->setTime($time);
     $objAcc->setTopic($topic);
     $objAcc->setUserId($mentor);
+    $objAcc->setStudentId($student);
+
 
 
     echo $name; echo '<br>';

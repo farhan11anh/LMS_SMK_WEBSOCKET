@@ -7,8 +7,12 @@ $objUser = new Users;
 $objUser->setEmail($_SESSION['user']);
 $orang = $objUser->getUserByEmail();
 
-if ($_SESSION['role'] == 2) {
-    header("location: http://localhost/websocket/web-chat-room/frontend/pages/mentor.php");
+
+if($_SESSION['role'] == 2){
+    header("location: mentor_approve.php");
+
+
+
 }
 
 // get user
@@ -19,7 +23,7 @@ $lectures = $response['data'];
 
 
 if (!isset($_SESSION['user'])) {
-    header("location: login.php");
+    header("location: ../../login.php");
 }
 
 
@@ -315,13 +319,15 @@ $user = $objUser->getUserByEmail();
                         <a class="text-light-green font-semibold" href="">Booking</a>
                     </li>
                 </ul>
-            </div>
+            </div>    
+                              
             <div class="bg-white w-full h-[50px] flex content-center px-10 rounded-xl">
                 <ul class="flex items-center gap-x-8">
                     <a href="http://localhost/websocket/web-chat-room/frontend/pages/daftarRequest.php">
                         <li
                             class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
                             <p>Status</p>
+
                         </li>
                     </a>
 
@@ -430,7 +436,11 @@ $user = $objUser->getUserByEmail();
                                     </div>
                                 </div>
                                 <div>
-                                    <input type="text" hidden id="user_id" value="<?= $_SESSION['id'] ?>">
+                                    <!-- save student id -->
+                                    <input type="text" hidden name="studentId" id="student" value="<?= $_SESSION['id'] ?>">
+
+                                    <!-- save lecture -->
+                                    <input type="text" hidden name="lectureId" id="lecture" value="">
                                     <label for="text"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 after:content-['*'] after:ml-0.5 after:text-red-500">Topic</label>
                                     <textarea id="message" rows="4" name="topic"
@@ -484,6 +494,8 @@ $user = $objUser->getUserByEmail();
     </script>
 
     <script>
+
+        
     function bukaModal(id) {
 
         $.ajax({

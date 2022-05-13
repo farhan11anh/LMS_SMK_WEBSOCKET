@@ -389,6 +389,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                                     $objGroup = new Groups;
                                     $groups = $objGroup->filterGroup($_SESSION['id']);
 
+
                                     if (count($groups) > 0) {
                                         foreach ($groups as $key => $group) {
 
@@ -426,6 +427,7 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
                         </div>
                     </div>
                 </div>
+
                 <!-- Room Chat -->
                 <div class="md:w-2/3">
                     <div>
@@ -476,7 +478,6 @@ echo "<input type='hidden' name='userId' id='userId' value='" . $_SESSION['id'] 
 
         </div>
     </div>
-
 
     <script>
         function requestChat(id, email, groupName) {

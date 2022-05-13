@@ -17,6 +17,9 @@ $acc = new Acceptance;
 $acc->updateStatus($accId, $status);
 $acceptanceId = $acc->getDataById($accId);
 $accTopic = $acceptanceId[0]['topic'];
+
+$email = $acceptanceId[0]['email'];
+
 //id mentor acceptance id
 $idMentorAcc = $acceptanceId[0]['user_id']; 
 
@@ -74,7 +77,7 @@ if ($_POST['status'] == 'active') {
             echo "Port is full!";
         }
 
-        $email = $user[0]['email'];
+        $email = $email;
         $subject = "Konsultasi Mentor " . $mentor['name'];
         $body = "Pengajuan konsultasimu disetujui, kunjungi link: http://localhost/websocket/web-chat-room/group_chat.php";
         $headers = "From: Code Cation <codecationll@gmail.com>";
@@ -100,4 +103,7 @@ if ($_POST['status'] == 'reject') {
         echo "email sending failed";
     }
 }
+
+
+
 ?>

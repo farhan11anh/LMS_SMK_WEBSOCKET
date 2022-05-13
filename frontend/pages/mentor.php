@@ -13,8 +13,10 @@ $objUser->setEmail($_SESSION['user']);
 $orang = $objUser->getUserByEmail();
 
 
-if ($_SESSION['role'] == 3) {
-    header("location: http://localhost/websocket/web-chat-room/frontend/pages");
+
+if($_SESSION['role'] == 3){
+    header("location: index.php");
+
 }
 
 if (!isset($_SESSION['user'])) {
@@ -321,24 +323,17 @@ $grp = new Groups;
                     </li>
                 </ul>
             </div>
-            <div class="bg-white w-auto h-[50px] flex content-center px-10  rounded-xl">
-                <ul class="flex items-center gap-x-4 md:gap-x-8">
 
-                    <a href="http://localhost/websocket/web-chat-room/frontend/pages/mentor_approve.php">
-                        <li
-                            class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
-                            <p>Session</p>
-                        </li>
-                    </a>
-                    <li
-                        class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
-                        Booking</li>
-                    <a href="http://localhost/websocket/web-chat-room/frontend/pages/mentor_set_schedule.php">
-                        <li
-                            class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
-                            <p>Add Schedule</p>
-                        </li>
-                    </a>
+            <div class="bg-white w-full h-[50px] flex content-center px-10  rounded-xl">
+                <ul class="flex items-center gap-x-8">
+
+                    <a href="mentor_approve.php"><li class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                        <p>Session</p>
+                    </li></a>
+                    <li class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">Booking</li>
+                    <a href="mentor_set_schedule.php"><li class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                        <p>Add Schedule</p>
+                    </li></a>
                 </ul>
             </div>
 

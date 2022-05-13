@@ -9,6 +9,7 @@ class Acceptance{
     private $time;
     private $topic;
     private $user_id;
+    private $student_id;
     private $db_conn;
 
     // Constructor
@@ -83,13 +84,23 @@ class Acceptance{
         return $this->user_id = $user_id;
     }
 
+    public function getStudentId(){
+        return $this->student_id;
+    }
+
+    public function setStudentId($student_id){
+        return $this->student_id = $student_id;
+    }
+
     public function saveData(){
-        $statement = $this->db_conn->prepare("INSERT INTO acceptance VALUES(null,:name, :email,'disable', :time, :topic, :user_id)");
+        $statement = $this->db_conn->prepare("INSERT INTO acceptance VALUES(null,:name, :email,'disable', :time, :topic, :user_id, :student_id)");
         $statement->bindParam(':email', $this->email);
         $statement->bindParam(':name', $this->name);
         $statement->bindParam(':time', $this->time);
+        $statement->bindParam(':topic', $this->topic);
+        $statement->bindParam(':user_id', $this->user_id);
+        $statement->bindParam(':student_id', $this->student_id);
       
-
 
         try{
             if($statement->execute()) {
@@ -115,6 +126,16 @@ class Acceptance{
     public function getDataByIdUser($user_id){
         $statement = $this->db_conn->prepare("SELECT * FROM acceptance where user_id = :user_id ");
         $statement->bindParam(':user_id', $user_id);
+
+        $statement->execute();
+        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    public function getDataByIdStudent($student_id){
+        $statement = $this->db_conn->prepare("SELECT * FROM acceptance where student_id = :student_id ");
+        $statement->bindParam(':student_id', $student_id);
 
         $statement->execute();
         $data = $statement->fetchAll(PDO::FETCH_ASSOC);

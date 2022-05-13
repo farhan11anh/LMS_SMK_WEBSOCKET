@@ -7,19 +7,6 @@ if(isset($_SESSION['user'])) {
     header("location: ./");
 }
 
-// if($orang['role'] == 2){
-//     header("location: http://localhost/websocket/web-chat-room/frontend/pages/mentor.php");
-// }
-
-// if($orang['role'] == 3){
-//     header("location: http://localhost/websocket/web-chat-room/frontend/pages");
-// }
-
-// $id_user1 = 1;
-// $response = file_get_contents('https://i0ifhnk0.directus.app/items/user?filter={"user_id":' .$id_user1.'}');
-// var_dump($response); echo '<br><br>';
-
-
 if(isset($_POST['login'])) {
     $loginResponse['is_ok'] = true;
 
