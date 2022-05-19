@@ -355,36 +355,30 @@ $grp = new Groups;
                             <th class="border-b text-center px-4 py-2">Keterangan</th>
                     </thead>
                     <tbody>
-                        <?php foreach ($acceptances as $acceptance) { ?>
-                        <tr class="status">
-                            <td class="border-b px-4 py-2"><?= $acceptance['name']; ?></td>
-                            <td class="border-b px-4 py-2 text-center"><?= $acceptance['time']; ?></td>
-                            <td class="border-b px-4 py-2 text-center"><?= $acceptance['topic']; ?></td>
-                            <td class="border-b px-4 py-2 text-center">
-                                <?php if ($acceptance['status'] == 'disable') { ?>
-                                <button type="button"
-                                    class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 mb-2 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                    onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>, 'active',<?= $_SESSION['id'] ?> )">Approve</button>
-                                <button type="button"
-                                    class="text-red-700 ml-1 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 "
-                                    onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>, 'reject')">Not
-                                    Approve</button>
-                                <?php } elseif ($acceptance['status'] == 'active') { ?>
-                                <button disabled type="button"
-                                    class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 mb-2 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                                    onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>)">Approved</button>
-                                <?php } else { ?>
-                                <button disabled type="button"
-                                    class="text-red-700 ml-1 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Rejected</button>
-                                <?php } ?>
 
+                        <?php foreach($acceptances as $acceptance){ ?>
+                            <tr class="status">
+                                <td class="border-b px-4 py-2"><?= $acceptance['name']; ?></td>
+                                <td class="border-b px-4 py-2 text-center"><?= $acceptance['time']; ?></td>
+                                <td class="border-b px-4 py-2 text-center"><?= $acceptance['topic']; ?></td>
+                                <td class="border-b px-4 py-2 text-center">
+                                    <?php if($acceptance['status'] == 'disable') { ?>
+                                        <button type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 mb-2 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>, 'active',<?= $_SESSION['id'] ?>, <?= $acceptance['student_id'] ?> )">Approve</button>
+                                        <button type="button" class="text-red-700 ml-1 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900 " onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>, 'reject')" >Not Approve</button>
+                                    <?php } elseif($acceptance['status'] == 'active') { ?>
+                                        <button disabled type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 mb-2 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="changeStatus(<?= $acceptance['acceptance_id'] ?>)">Approved</button>
+                                    <?php } else { ?>
+                                        <button disabled type="button" class="text-red-700 ml-1 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900">Rejected</button>
+                                    <?php } ?>
+                                    
+                                    
+                                </td>
+                                <td class="border-b px-4 py-2">
+                                    <p class="text-center">-</p>
+                                </td>
+                            </tr>
+                       <?php } ?>
 
-                            </td>
-                            <td class="border-b px-4 py-2">
-                                <p class="text-center">-</p>
-                            </td>
-                        </tr>
-                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -409,7 +403,9 @@ $grp = new Groups;
     </script>
 
     <script>
-    function changeStatus(id, status, iduser) {
+
+        function changeStatus(id, status, iduser, student_id){
+
 
         if (confirm('apakah anda yakin menerima tawaran ?')) {
             console.log(id);
@@ -420,6 +416,7 @@ $grp = new Groups;
                     id_user: iduser,
                     acc_id: id,
                     status: status,
+                    student_id: student_id,
                     approve: "success"
                 },
                 success: function(data, status) {

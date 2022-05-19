@@ -48,7 +48,7 @@ if(isset($_POST['login'])) {
                     header('locaction: http://localhost/websocket/web-chat-room/frontend/pages/');
                 }  
 
-                header('location: ./');
+                header('location: frontend/pages');
             }else {
                 echo 'password tidak tepat';
             }

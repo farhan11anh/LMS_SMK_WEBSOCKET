@@ -11,6 +11,8 @@ $accId = $_POST['acc_id'];
 
 $status = $_POST['status'];
 
+$studentId = $_POST['student_id'];
+
 // get acceptance
 $acc = new Acceptance;
 
@@ -25,6 +27,7 @@ $idMentorAcc = $acceptanceId[0]['user_id'];
 
 
 $userId = $_POST['id_user'];
+
 
 // get Mentor
 $objMentor = new Users;
@@ -66,11 +69,11 @@ if ($_POST['status'] == 'active') {
             if( $objPort->update_port_status()){
                 $objPriv = new Privillage;
                 
-                if($objPriv->savePrivillage($latestId, $userId)){
-                    
-                }else {
-                     
-                }
+                $objPriv->savePrivillage($latestId, $userId);
+
+                $objPriv->savePrivillage($latestId, $studentId);
+
+
 
             }
         } else {

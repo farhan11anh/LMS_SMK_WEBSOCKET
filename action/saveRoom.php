@@ -28,7 +28,7 @@ if(!empty($_POST['submit'])){
 
     if($objAcc->saveData()){
         echo 'berhasil disimpan';
-        header("Location: http://localhost/websocket/web-chat-room/frontend/pages");
+        header("Location: ../frontend/pages/index.php");
     } else {
         echo 'gagal simpan';
     }

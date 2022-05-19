@@ -267,8 +267,10 @@ $acception = $objAccept->getDataByIdStudent($_SESSION['id']);
         <div class="bg-cgray w-full h-screen px-10 py-6 flex flex-col gap-y-6 overflow-y-scroll rightbar">
             <!-- Header / Profile -->
             <div class="flex items-center gap-x-4 justify-end">
-                <img class="w-10" src="./Img/icons/default_profile.svg" alt="Profile Image" id="profil_image2">
-                <p class="text-dark-green font-semibold">User Name</p>
+
+                <img class="w-10" src="./Img/icons/default_profile.svg" alt="Profile Image">
+                <p class="text-dark-green font-semibold"><?= $_SESSION['user'] ?></p>
+
             </div>
 
             <!-- Breadcrumb -->
@@ -293,17 +295,12 @@ $acception = $objAccept->getDataByIdStudent($_SESSION['id']);
             </div>
             <div class="bg-white w-full h-[50px] flex content-center px-10 rounded-xl">
                 <ul class="flex items-center gap-x-8">
-                    <a href="">
-                        <li
-                            class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
-                            <p>Status</p>
-                        </li>
-                    </a>
-                    <a href="http://localhost/websocket/web-chat-room/frontend/pages/index.php">
-                        <li
-                            class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
-                            Booking</li>
-                    </a>
+
+                    <li class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                        <p>Status</p>
+                    </li>
+                    <a href="index.php"><li class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">Booking</li></a>
+
 
                 </ul>
             </div>
@@ -330,78 +327,8 @@ $acception = $objAccept->getDataByIdStudent($_SESSION['id']);
                             <th class="border-b text-center px-4 py-2">Keterangan</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="border-b px-4 py-2">Edwina Christy</td>
-                            <td class="border-b px-4 py-2 text-center">02/02/2022</td>
-                            <td class="border-b px-4 py-2 text-center">09:00</td>
-                            <td class="border-b px-4 py-2 text-center">
-                                <div
-                                    class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 rounded-lg text-sm flex text-center py-2 px-4 w-3/4 mx-auto">
-                                    <div class="ml-5 text-green-500 bg-green-100 rounded-lg">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="ml-6 text-sm font-medium text-white">Approved
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="border-b px-4 py-2 text-center">
-                                <button type="button"
-                                    class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Konsultasi</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-b px-4 py-2">Happy Hartana</td>
-                            <td class="border-b px-4 py-2 text-center">02/02/2022</td>
-                            <td class="border-b px-4 py-2 text-center">10:00</td>
-                            <td class="border-b px-4 py-2 text-center">
-                                <div
-                                    class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 rounded-lg text-sm flex text-center py-2 px-4 w-3/4 mx-auto">
-                                    <div
-                                        class="ml-5 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="ml-6 text-sm font-medium text-white">Reject
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="border-b px-4 py-2 text-center">
-                                <p>-</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="border-b px-4 py-2">Anita Zulrakhmida</td>
-                            <td class="border-b px-4 py-2 text-center">02/02/2022</td>
-                            <td class="border-b px-4 py-2 text-center">10:00</td>
-                            <td class="border-b px-4 py-2 text-center">
-                                <div
-                                    class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 rounded-lg text-sm flex text-center py-2 px-4 w-3/4 mx-auto">
-                                    <div
-                                        class="ml-5 text-red-500 bg-red-100 dark:bg-red-800 dark:text-red-200 rounded-lg">
-                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                    <div class="ml-6 text-sm font-medium text-white">Reject
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="border-b px-4 py-2 text-center">
-                                <p>-</p>
-                            </td>
-                        </tr>
+
+
 
                         <?php foreach($acception as $key) : ?>
                             <tr>
@@ -454,7 +381,11 @@ $acception = $objAccept->getDataByIdStudent($_SESSION['id']);
 
                                 </td>
                                 <td class="border-b px-4 py-2 text-center">
-                                    <p>-</p>
+                                    <?php if($key['status'] == 'active'){ ?>
+                                        <button type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Konsultasi</button>
+                                    <?php } else {?>
+                                        <p>-</p>
+                                    <?php } ?>
                                 </td>
                             </tr>
                         <?php endforeach ?>

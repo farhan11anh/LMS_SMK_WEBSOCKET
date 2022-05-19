@@ -417,8 +417,9 @@ $user = $objUser->getUserByEmail();
                                 </div>
                                 <div>
                                     <label for="email"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300 after:content-['*'] after:ml-0.5 after:text-red-500">Email</label>
-                                    <input type="email" name="email" id="email"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300  after:content-['*'] after:ml-0.5 after:text-red-500">Email</label>
+                                        <input type="email" name="email" id="email"
+
                                         class="bg-gray-50 border border-gray-300 -mb-4 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white invalid:text-red-600 invalid:focus:ring-red-600 invalid:focus:border-red-600 peer"
                                         placeholder="email@example.com">
                                     <p class="mt-5 -mb-5 italic text-xs invisible peer-invalid:visible text-red-600">
