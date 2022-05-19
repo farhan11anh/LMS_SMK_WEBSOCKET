@@ -12,8 +12,10 @@ $objUser->setEmail($_SESSION['user']);
 $orang = $objUser->getUserByEmail();
 
 
+
 if($_SESSION['role'] == 3){
     header("location: index.php");
+
 }
 
 if (!isset($_SESSION['user'])) {
@@ -49,11 +51,12 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
     <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
     <!-- Tailwindcss -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
     <script>
     tailwind.config = {
@@ -73,6 +76,23 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
     }
     </script>
     <style>
+    .sidebar #username_logo {
+        display: none;
+    }
+
+    #profil_image {
+        display: none !important;
+    }
+
+    .responsive-top {
+        display: none;
+    }
+
+    .active {
+        color: #DDB07F !important;
+        border-bottom: solid 4px #DDB07F;
+    }
+
     .in-active {
         width: 80px !important;
         padding: 20px 15px !important;
@@ -100,11 +120,95 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
     .sidebar {
         transition: .5s ease-in-out;
     }
+
+    @media screen and (max-width: 414px) {
+        .responsive-top {
+            display: block;
+        }
+
+        #profil_image {
+            display: flex !important;
+        }
+
+        .logo-smk {
+            display: none !important;
+        }
+
+        .assignment-table th,
+        .assignment-table td {
+            font-size: 9px;
+        }
+
+        .assignment-table img {
+            width: 45%;
+        }
+
+        .sidebar h2,
+        .sidebar h4,
+        .sidebar .logo-incareer,
+        .sidebar hr,
+        .sidebar #btnToggle {
+            display: none !important;
+        }
+
+        .sidebar #username_logo {
+            display: block;
+            margin: 0;
+        }
+
+        .breadcrumb ul {
+            font-size: .5rem;
+        }
+
+        .topic-title p {
+            font-size: 1.35rem;
+        }
+
+        .mentor-profile img {
+            width: 20%;
+        }
+
+        .mentor-profile p {
+            font-size: .5rem;
+        }
+
+        .direction p {
+            font-size: .5rem;
+        }
+
+        .tab-menu ul {
+            font-size: .6rem;
+        }
+
+        .in-active {
+            width: 80px !important;
+            padding: 10px 15px !important;
+            transition: .5s ease-in-out;
+        }
+
+
+        .sidebar {
+            position: absolute;
+            z-index: 1;
+        }
+
+        .rightbar {
+            margin-left: 80px;
+        }
+
+
+    }
     </style>
 
 </head>
 
 <body>
+    <div class="responsive-top p-5">
+    <div class="container flex flex-column justify-between mt-4 mb-4">
+            <img class="w-[280px] logo-smk1" src="../src/code.svg" alt="Logo SMK">
+            <img src="Img/icons/toggle_icons.svg" alt="toggle_dashboard" class="w-8 cursor-pointer" id="btnToggle2">
+        </div>
+    </div>
     <div class="flex items-center">
         <!-- Left side (Sidebar) -->
         <div class="bg-white w-[350px] h-screen px-8 py-6 flex flex-col justify-between sidebar in-active">
@@ -114,7 +218,7 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                 <div class="flex items-center space-x-4 px-2">
                     <img src="Img/icons/toggle_icons.svg" alt="toggle_dashboard" class="w-8 cursor-pointer"
                         id="btnToggle">
-                    <img class="w-[150px] logo-smk" src="../src/logofix.png" alt="Logo In Career">
+                    <img class="logo-smk -translate-x-6 " src="../src/code.svg" alt="Logo SMK">
                 </div>
 
                 <hr class="border-[1px] border-opacity-50 border-[#93BFC1]">
@@ -137,24 +241,10 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                             </a>
                         </li>
                         <li>
-                            <a href="#"
-                                class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
-                                <img class="w-5" src="./Img/icons/discussion_icon.svg" alt="Forum Icon">
-                                <p class="font-semibold">Forum Dicussion</p>
-                            </a>
-                        </li>
-                        <li>
                             <a href=""
                                 class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
                                 <img class="w-5" src="./Img/icons/schedule_icon.svg" alt="Schedule Icon">
                                 <p class="font-semibold">Schedule</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href=""
-                                class="flex items-center gap-x-4 h-[50px] rounded-xl px-4 hover:bg-cream text-dark-green hover:text-white">
-                                <img class="w-5" src="./Img/icons/attendance_icon.svg" alt="Attendance Icon">
-                                <p class="font-semibold">Attendance</p>
                             </a>
                         </li>
                         <li>
@@ -197,10 +287,10 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
 
 
         <!-- Right side -->
-        <div class="bg-cgray w-full h-screen px-10 py-6 flex flex-col gap-y-6 overflow-y-scroll">
+        <div class="bg-cgray w-full h-screen px-10 py-6 flex flex-col gap-y-6 overflow-y-scroll rightbar">
             <!-- Header / Profile -->
             <div class="flex items-center gap-x-4 justify-end">
-                <img class="w-10" src="./Img/icons/default_profile.svg" alt="Profile Image">
+                <img class="w-10" src="./Img/icons/default_profile.svg" alt="Profile Image" id="profil_image2">
                 <p class="text-dark-green font-semibold"><?= $_SESSION['user'] ?></p>
             </div>
 
@@ -220,26 +310,29 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                         <span class="text-light-green">/</span>
                     </li>
                     <li>
-                        <a class="text-light-green font-semibold" href="#">Book</a>
+                        <a class="text-light-green font-semibold" href="#">Add Schedule</a>
                     </li>
                 </ul>
             </div>
             <div class="bg-white w-full h-[50px] flex content-center px-10  rounded-xl">
-                <ul class="flex items-center gap-x-8">
+                <ul class="flex items-center gap-x-4 md:gap-x-8">
                     <a href="mentor_approve.php">
                         <li
-                        class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                            class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
                             <p>Session</p>
                         </li>
                     </a>
                     <a href="mentor.php">
                         <li
-                        class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                            class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
                             Booking</li>
                     </a>
-                    <a href="http://localhost/websocket/web-chat-room/frontend/pages/mentor_set_schedule.php"><li class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
-                        <p>Add Schedule</p>
-                    </li></a>
+                    <a href="http://localhost/websocket/web-chat-room/frontend/pages/mentor_set_schedule.php">
+                        <li
+                            class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                            <p>Add Schedule</p>
+                        </li>
+                    </a>
                 </ul>
             </div>
             <div class="flex flex-row-reverse ...">
@@ -253,7 +346,7 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                     <colgroup>
                         <col span="1" style="width: 10%">
                         <col span="1" style="width: 10%">
-   
+
                     </colgroup>
                     <thead>
                         <tr class="text-dark-green">
@@ -263,7 +356,7 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                     </thead>
                     <tbody>
 
-                        <?php foreach($dataAva as $data){ ?>
+                        <?php foreach ($dataAva as $data) { ?>
                         <tr>
                             <td class="border-b px-4 py-2 text-center"><?= $data['start_time'] ?></td>
                             <td class="border-b px-4 py-2 text-center"><?= $data['end_time'] ?></td>
@@ -295,7 +388,8 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                     </div>
                     <!-- Modal body -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                        <form class="mt-4 px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="../../action/sendTime.php" method="post">
+                        <form class="mt-4 px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
+                            action="../../action/sendTime.php" method="post">
                             <h3 class="text-xl font-medium text-gray-900 text-center dark:text-white">Set Your
                                 Schedule</h3>
 
@@ -303,44 +397,45 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                             <div class="flex gap-x-4 py-1 px-10 rounded-xl">
                                 <img class="w-14" src="./Img/icons/default_profile.svg" alt="Profile Image">
                                 <div class="">
-                                    <p class="text-dark-green text-base font-semibold" id="mentorName">Edwina Christy | 0018990
+                                    <p class="text-dark-green text-base font-semibold" id="mentorName">Edwina Christy |
+                                        0018990
                                     </p>
                                     <p class="text-light-green">Mentor System Analyst</p>
                                 </div>
                             </div>
-                            
-                         
-                                <div>
-                                    <label for="text"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Waktu
-                                        Mulai</label>
-                                    <div class="timepicker relative form-floating mb-3 w-full" id="input-toggle-timepicker"
-                                        data-mdb-toggle-button="false">
-                                        <input type="datetime-local" step="0.001" name="timeStart"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Select a time"/>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label for="text"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Waktu
-                                        Selesai</label>
-                                    <div class="timepicker relative form-floating mb-3 w-full" id="input-toggle-timepicker"
-                                        data-mdb-toggle-button="false">
-                                        <input type="datetime-local" step="0.001" name="timeEnd"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Select a time" />
-                                    </div>
-                                    <input type="text" name="user_id" value="<?= $_SESSION['id'] ?>" hidden>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" 
-                                        class=" items-center focus:outline-none border border-yellow-400 text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">Accept</button>
 
-                                    <button data-modal-toggle="defaultModal" type="button"
-                                        class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Cancel</button>
+
+                            <div>
+                                <label for="text"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Waktu
+                                    Mulai</label>
+                                <div class="timepicker relative form-floating mb-3 w-full" id="input-toggle-timepicker"
+                                    data-mdb-toggle-button="false">
+                                    <input type="datetime-local" step="0" name="timeStart"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Select a time" />
                                 </div>
-                          
+                            </div>
+                            <div>
+                                <label for="text"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Waktu
+                                    Selesai</label>
+                                <div class="timepicker relative form-floating mb-3 w-full" id="input-toggle-timepicker"
+                                    data-mdb-toggle-button="false">
+                                    <input type="datetime-local" step="0" name="timeEnd"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Select a time" />
+                                </div>
+                                <input type="text" name="user_id" value="<?= $_SESSION['id'] ?>" hidden>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit"
+                                    class=" items-center focus:outline-none border border-yellow-400 text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">Accept</button>
+
+                                <button data-modal-toggle="defaultModal" type="button"
+                                    class="text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900">Cancel</button>
+                            </div>
+
                     </div>
 
 
@@ -355,51 +450,49 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
     </div>
 
     <script>
-    
-        function openModal(id, uname){
+    function openModal(id, uname) {
 
-            $('#mentorName').html(uname);
+        $('#mentorName').html(uname);
 
-            console.log(uname)
+        console.log(uname)
+        $.ajax({
+            method: "POST",
+            data: {
+                user_id: id,
+                send: true
+            },
+            url: '../../action/schedule.php',
+            success: function(data, status) {
+
+                console.log(JSON.parse(data));
+
+                let user = JSON.parse(data);
+
+                let name = user.name;
+
+                $('#mentorName').html(uname);
+
+
+            }
+
+
+        })
+
+        function sendForm(id) {
+            console.log(id)
             $.ajax({
                 method: "POST",
                 data: {
-                    user_id: id,
-                    send: true
+                    user_id: id
                 },
-                url: '../../action/schedule.php',
-                success: function(data, status){
-                    
-                    console.log(JSON.parse(data));
-
-                    let user = JSON.parse(data);
-
-                    let name = user.name;
-
-                    $('#mentorName').html(uname);
-                    
+                url: '../../action/sendTime.php',
+                success: function(data, status) {
 
                 }
-
-                
             })
-
-            function sendForm(id){
-                console.log(id)
-                $.ajax({
-                    method: "POST",
-                    data: {
-                        user_id: id
-                    },
-                    url: '../../action/sendTime.php',
-                    success: function(data, status){
-
-                    }
-                })
-            }
-            
         }
 
+    }
     </script>
 
     <script src="https://unpkg.com/flowbite@1.4.2/dist/flowbite.js"></script>
@@ -410,9 +503,12 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
     btnToggle.onclick = function() {
         sidebar.classList.toggle('in-active');
     }
+    btnToggle2.onclick = function() {
+        sidebar.classList.toggle('in-active');
+    }
     </script>
 
-<link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.2/dist/flowbite.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.2/dist/flowbite.min.css" />
 
 </body>
 
