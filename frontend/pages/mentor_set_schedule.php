@@ -312,7 +312,7 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                     </li>
                 </ul>
             </div>
-            <div class="bg-white w-full h-[50px] flex content-center px-10  rounded-xl">
+            <div class="bg-white w-full h-[50px] flex content-center px-10 pr-8 rounded-xl">
                 <ul class="flex items-center gap-x-4 md:gap-x-8">
                     <a href="mentor_approve.php">
                         <li
