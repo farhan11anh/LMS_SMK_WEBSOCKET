@@ -11,17 +11,23 @@ $accId = $_POST['acc_id'];
 
 $status = $_POST['status'];
 
+$studentId = $_POST['student_id'];
+
 // get acceptance
 $acc = new Acceptance;
 
 $acc->updateStatus($accId, $status);
 $acceptanceId = $acc->getDataById($accId);
 $accTopic = $acceptanceId[0]['topic'];
+
+$email = $acceptanceId[0]['email'];
+
 //id mentor acceptance id
 $idMentorAcc = $acceptanceId[0]['user_id']; 
 
 
 $userId = $_POST['id_user'];
+
 
 // get Mentor
 $objMentor = new Users;
@@ -63,18 +69,18 @@ if ($_POST['status'] == 'active') {
             if( $objPort->update_port_status()){
                 $objPriv = new Privillage;
                 
-                if($objPriv->savePrivillage($latestId, $userId)){
-                    
-                }else {
-                     
-                }
+                $objPriv->savePrivillage($latestId, $userId);
+
+                $objPriv->savePrivillage($latestId, $studentId);
+
+
 
             }
         } else {
             echo "Port is full!";
         }
 
-        $email = $user[0]['email'];
+        $email = $email;
         $subject = "Konsultasi Mentor " . $mentor['name'];
         $body = "Pengajuan konsultasimu disetujui, kunjungi link: http://localhost/websocket/web-chat-room/group_chat.php";
         $headers = "From: Code Cation <codecationll@gmail.com>";
@@ -100,4 +106,7 @@ if ($_POST['status'] == 'reject') {
         echo "email sending failed";
     }
 }
+
+
+
 ?>

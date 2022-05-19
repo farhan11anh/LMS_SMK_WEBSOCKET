@@ -12,12 +12,14 @@ $objUser->setEmail($_SESSION['user']);
 $orang = $objUser->getUserByEmail();
 
 
-if ($_SESSION['role'] == 3) {
-    header("location: http://localhost/websocket/web-chat-room/frontend/pages");
+
+if($_SESSION['role'] == 3){
+    header("location: index.php");
+
 }
 
 if (!isset($_SESSION['user'])) {
-    header("location: login.php");
+    header("location: ../../login.php");
 }
 
 
