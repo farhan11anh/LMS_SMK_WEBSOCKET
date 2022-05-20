@@ -358,7 +358,7 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
 
                         <?php foreach ($dataAva as $data) { ?>
                         <tr>
-                            <td class="border-b px-4 py-2 text-center"><?= $data['start_time'] ?></td>
+                            <td class="border-b px-4 py-2 text-center"><?= $data['start_time']?></td>
                             <td class="border-b px-4 py-2 text-center"><?= $data['end_time'] ?></td>
                         </tr>
                         <?php } ?>
@@ -413,7 +413,7 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                                     data-mdb-toggle-button="false">
                                     <input type="datetime-local" step="0" name="timeStart"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Select a time" />
+                                        placeholder="Select a time" required/>
                                 </div>
                             </div>
                             <div>
@@ -424,7 +424,7 @@ $dataAva = $objAva->getDataById($_SESSION['id']);
                                     data-mdb-toggle-button="false">
                                     <input type="datetime-local" step="0" name="timeEnd"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 -mb-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Select a time" />
+                                        placeholder="Select a time" required/>
                                 </div>
                                 <input type="text" name="user_id" value="<?= $_SESSION['id'] ?>" hidden>
                             </div>
