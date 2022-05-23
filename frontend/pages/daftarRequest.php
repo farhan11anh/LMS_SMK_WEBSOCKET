@@ -178,7 +178,7 @@ $acception = $objAccept->getDataByIdStudent($_SESSION['id']);
 
 <body>
     <div class="responsive-top p-5">
-    <div class="container flex flex-column justify-between mt-4 mb-4">
+        <div class="container flex flex-column justify-between mt-4 mb-4">
             <img class="w-[280px] logo-smk1" src="../src/code.svg" alt="Logo SMK">
             <img src="Img/icons/toggle_icons.svg" alt="toggle_dashboard" class="w-8 cursor-pointer" id="btnToggle2">
         </div>
@@ -296,10 +296,15 @@ $acception = $objAccept->getDataByIdStudent($_SESSION['id']);
             <div class="bg-white w-full h-[50px] flex content-center px-10 rounded-xl">
                 <ul class="flex items-center gap-x-8">
 
-                    <li class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                    <li
+                        class="text-dark-green text-cream border-b-4 border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
                         <p>Status</p>
                     </li>
-                    <a href="index.php"><li class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">Booking</li></a>
+                    <a href="index.php">
+                        <li
+                            class="text-dark-green hover:text-cream hover:border-b-4 hover:border-cream h-[50px] flex items-center font-semibold  cursor-pointer">
+                            Booking</li>
+                    </a>
 
 
                 </ul>
@@ -323,71 +328,79 @@ $acception = $objAccept->getDataByIdStudent($_SESSION['id']);
                             <th class="border-b text-left px-4 py-2">Nama Mentor</th>
                             <th class="border-b text-center px-4 py-2">Tanggal</th>
                             <th class="border-b text-center px-4 py-2">Jam</th>
-                            <th class="border-b text-center px-4 py-2">Status</th> 
+                            <th class="border-b text-center px-4 py-2">Status</th>
                             <th class="border-b text-center px-4 py-2">Keterangan</th>
                     </thead>
                     <tbody>
 
 
 
-                        <?php foreach($acception as $key) : ?>
-                            <tr>
-                                <?php 
-                                
-                                    $time = explode(' ', $key['time']);
+                        <?php foreach ($acception as $key) : ?>
+                        <tr>
+                            <?php
 
-                                    $date = $time[0];
+                                $time = explode(' ', $key['time']);
 
-                                    $clock = $time[1];
-                                    
-                                ?>
+                                $date = $time[0];
 
-                                <?php 
-                                
-                                $response = json_decode(file_get_contents('https://i0ifhnk0.directus.app/items/user?filter={"user_id":"' .$key['user_id'].'"}'), true);
+                                $clock = $time[1];
 
                                 ?>
 
-                                <td class="border-b px-4 py-2"><?= $response['data'][0]['user_username'] ?></td>
-                                <td class="border-b px-4 py-2 text-center"><?= $date ?></td>
-                                <td class="border-b px-4 py-2 text-center"><?= $clock ?></td>
-                                <td class="border-b px-4 py-2 text-center">
-                                    <?php if($key['status'] == 'reject'){ ?>
-                                        <div class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 rounded-lg text-sm flex text-center py-2 px-4 w-3/4 mx-auto">
-                                        <div class="ml-5 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200 rounded-lg">
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z">
-                                                </path>
-                                            </svg>
-                                        </div>
-                                        <div class="ml-6 text-sm font-medium text-white">
-                                            Reject
-                                        </div>
+                            <?php
+
+                                $response = json_decode(file_get_contents('https://i0ifhnk0.directus.app/items/user?filter={"user_id":"' . $key['user_id'] . '"}'), true);
+
+                                ?>
+
+                            <td class="border-b px-4 py-2"><?= $response['data'][0]['user_username'] ?></td>
+                            <td class="border-b px-4 py-2 text-center"><?= $date ?></td>
+                            <td class="border-b px-4 py-2 text-center"><?= $clock ?></td>
+                            <td class="border-b px-4 py-2 text-center">
+                                <?php if ($key['status'] == 'reject') { ?>
+                                <div
+                                    class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 rounded-lg text-sm flex text-center py-2 px-4 md:w-1/2 mx-auto">
+                                    <div
+                                        class="md:ml-5 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z">
+                                            </path>
+                                        </svg>
                                     </div>
-                                    <?php }else if($key['status'] == 'active') { ?>
-                                        <div class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 rounded-lg text-sm flex text-center py-2 px-4 w-3/4 mx-auto">
-                                            <div class="ml-5 text-green-500 bg-green-100 rounded-lg">
-                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z">
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                            <div class="ml-6 text-sm font-medium text-white">Approved
-                                            </div>
-                                        </div>
-                                    <?php }else { ?>
-                                        disable
-                                    <?php } ?>
+                                    <div class="ml-2 md:ml-6 text-sm font-medium text-white">
+                                        Reject
+                                    </div>
+                                </div>
+                                <?php } else if ($key['status'] == 'active') { ?>
+                                <div
+                                    class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 rounded-lg text-sm flex text-center py-2 px-4 md:w-1/2 mx-auto">
+                                    <div class="md:ml-5 text-green-500 bg-green-100 rounded-lg">
+                                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="ml-2 md:ml-6 text-sm font-medium text-white">Approved
+                                    </div>
+                                </div>
+                                <?php } else { ?>
+                                disable
+                                <?php } ?>
 
-                                </td>
-                                <td class="border-b px-4 py-2 text-center">
-                                    <?php if($key['status'] == 'active'){ ?>
-                                        <button type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Konsultasi</button>
-                                    <?php } else {?>
-                                        <p>-</p>
-                                    <?php } ?>
-                                </td>
-                            </tr>
+                            </td>
+                            <td class="border-b px-4 py-2 text-center">
+                                <?php if ($key['status'] == 'active') { ?>
+                                <button type="button"
+                                    class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Konsultasi</button>
+                                <?php } else { ?>
+                                <p>-</p>
+                                <?php } ?>
+                            </td>
+                        </tr>
                         <?php endforeach ?>
                     </tbody>
                 </table>
