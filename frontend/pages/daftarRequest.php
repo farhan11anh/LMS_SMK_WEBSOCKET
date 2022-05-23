@@ -394,8 +394,8 @@ $acception = $objAccept->getDataByIdStudent($_SESSION['id']);
                             </td>
                             <td class="border-b px-4 py-2 text-center">
                                 <?php if ($key['status'] == 'active') { ?>
-                                <button type="button"
-                                    class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Konsultasi</button>
+                                <a href="http://localhost/websocket/web-chat-room/group_chat.php"><button type="button"
+                                        class="px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Konsultasi</button></a>
                                 <?php } else { ?>
                                 <p>-</p>
                                 <?php } ?>
